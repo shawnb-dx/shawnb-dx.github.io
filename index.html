@@ -7,6 +7,7 @@
 <body>
 	<center><h1><b> Welcome To Bathmate Clicker</b></h1>
 		<p>Pumps: <span id="score">0</span></p>
+		<p><span id="scorepersecond">0</span> Pumps Per Second
 		<p>HydroVibes: <span id="HydroVibes">0</span></p>
 		<p>Max Out Bottles: <span id="MaxOutBottles">0</span></p>
 		<p>Jelq Bottles: <span id="JelqBottles">0</span></p>				
@@ -37,6 +38,7 @@
 				document.getElementById("score").innerHTML = score;
 				document.getElementById("vibeCost").innerHTML = vibeCost;
 				document.getElementById("HydroVibes").innerHTML = HydroVibes;
+				updateScorePerSecond();
 			}
 		}
 
@@ -49,6 +51,7 @@
 				document.getElementById("score").innerHTML = score;
 				document.getElementById("maxCost").innerHTML = maxCost;
 				document.getElementById("MaxOutBottles").innerHTML = MaxOutBottles;
+				updateScorePerSecond();
 			}
 		}
 		function buyJelqSerum() {
@@ -58,14 +61,20 @@
 				jelqCost = Math.round(jelqCost * 1.15);
 
 				document.getElementById("score").innerHTML = score;
-				document.getElementById("jelqCost").innerHTML = vibeCost;
+				document.getElementById("jelqCost").innerHTML = jelqCost;
 				document.getElementById("JelqBottles").innerHTML = JelqBottles;
+				updateScorePerSecond();
 			}
 		}		
 
 		function addToScore(amount) {
 			score = score + amount;
 			document.getElementById("score").innerHTML = score;
+		}
+
+		function updateScorePerSecond() {
+			scorePerSecond = HydroVibes + MaxOutBottles * 5 + JelqBottles * 10;
+			document.getElementById("scorepersecond").innerHTML = scorePerSecond;
 		}
 
 		setInterval(function() {
