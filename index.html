@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+<style>
+	}
+</style>
+</head>
+<body>
+	<center><h1><b> Welcome To Bathmate Clicker</b></h1>
+		<p>Pumps: <span id="score">0</span></p>
+		<p>HydroVibes: <span id="HydroVibes">0</span></p>
+		<p>Max Out Bottles: <span id="MaxOutBottles">0</span></p>
+		<p>Jelq Bottles: <span id="JelqBottles">0</span></p>				
+		<button id="pumps" onclick="addToScore(1)">Gain 1 Pump</button>
+		<button id="vibes" onclick="buyHydroVibe()">Gain 1 HydroVibe for<br> <span id="vibeCost">15</span> Pumps</button>
+		<button id="maxout" onclick="buyMaxOut()">Gain 1 Bottle Of Max Out for<br> <span id="maxCost">100</span> Pumps</button>
+		<button id="jelq" onclick="buyJelqSerum()">Gain 1 Bottle Of Jelq Serum for<br> <span id="jelqCost">250</span> Pumps</button>
+
+
+
+	<script>
+		var score = 0;
+
+
+		var vibeCost = 15;
+		var HydroVibes = 0;
+		var maxCost = 100;
+		var MaxOutBottles = 0;
+		var jelqCost = 250;
+		var JelqBottles = 0;
+
+		function buyHydroVibe() {
+			if (score >= vibeCost) {
+				score = score - vibeCost;
+				HydroVibes = HydroVibes +1;
+				vibeCost = Math.round(vibeCost * 1.15);
+
+				document.getElementById("score").innerHTML = score;
+				document.getElementById("vibeCost").innerHTML = vibeCost;
+				document.getElementById("HydroVibes").innerHTML = HydroVibes;
+			}
+		}
+
+		function buyMaxOut() {
+			if (score >= maxCost) {
+				score = score - maxCost;
+				MaxOutBottles = MaxOutBottles +1;
+				maxCost = Math.round(maxCost * 1.15);
+
+				document.getElementById("score").innerHTML = score;
+				document.getElementById("maxCost").innerHTML = maxCost;
+				document.getElementById("MaxOutBottles").innerHTML = MaxOutBottles;
+			}
+		}
+		function buyJelqSerum() {
+			if (score >= jelqCost) {
+				score = score - jelqCost;
+				JelqBottles = JelqBottles +1;
+				jelqCost = Math.round(jelqCost * 1.15);
+
+				document.getElementById("score").innerHTML = score;
+				document.getElementById("jelqCost").innerHTML = vibeCost;
+				document.getElementById("JelqBottles").innerHTML = JelqBottles;
+			}
+		}		
+
+		function addToScore(amount) {
+			score = score + amount;
+			document.getElementById("score").innerHTML = score;
+		}
+
+		setInterval(function() {
+			score = score + HydroVibes;
+			score = score + MaxOutBottles * 5;
+			score = score + JelqBottles * 10;
+
+			document.getElementById("score").innerHTML = score;
+		}, 1000); // 1000ms = 1 second
+
+		</script>	
+</body>
