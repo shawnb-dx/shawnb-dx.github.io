@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <head>
 	<style>
-		.sectionLeft {
-			float: left;
-			width:70%;
-		}
 		.sectionRight {
+			margin-top:20px;
+			margin-right:35px;
 			float: right;
-			width:30%;
+			width:45%;
+		}
+		.sectionLeft {
+			margin-top:20px;
+			margin-left:35px;
+			float: left;
+			width:45%;
 		}
 		.scoreContainer {
 			background-color: rgb(238, 238, 238, 0.6);
@@ -16,11 +20,13 @@
 			font-size: 24px;
 			font-weight: bold;
 			border: 2px solid;
+			border-radius: 10px;
 		}
 		.shopButton {
 			background-color: #b5b5b5;
 			transition: all .2s ease-in-out;
 			border-radius: 10px;
+			border: 2px solid;
 			width:100%;
 			margin: 0px 0px 10px 0px;
 		}
@@ -37,7 +43,7 @@
 		}
 		.shopButton #nameAndCost p{
 			margin: 0px;
-			width: 60%;
+			width: 100%;
 			float:left;
 		}
 		.shopButton #nameAndCost p:first-of-type {
@@ -51,59 +57,98 @@
 		}
 		#pumps {
 			height:78px;
-			width:95%;
+			width:96%;
 			font-size:40px;
 			font-family: roboto;
 			border-radius:20px;
+			margin-left:35px;
+		}
+		.header {
+			font-family: roboto;
+			font-size: 30px;
 		}
 </style>
 </head>
 <body>
 		<center>
-	<h1><b> Welcome To Bathmate Clicker</b></h1><br><br>
-	<div class="sectionLeft">
-	<center>
+	<div class="header">
+	<h1><b> Welcome To Cake Collectors!</b></h1><br>
+	</div>
 	
 	<div class="scoreContainer">
-		<p><span id="score">0</span> Pumps</p>
-		<p><span id="scorepersecond">0</span> Pumps Per Second</p>
+		<p><span id="score">0</span> Slices Of Cake</p>
+		<p><span id="scorepersecond">0</span> Slices Per Second</p>
+		<p><span id="clicks">1</span> Clicking Power</p>
 	</center>
 	<br><br>
 		<div class="clickerContainer">
-			<button id="pumps" onclick="addToScore(1)">Gain 1 Pump</button>
+			<button id="pumps" onclick="addToScore(clicks)">Bake A Cake(s) </button>
 	</div>
 	</div>	
-
-
-	<div class = "sectionRight">
+	<div class = "sectionLeft">
 		<table class="shopButton" onclick="buyHydroVibe()">
 			<tr>
-				<td id="image"><img src="images/vibes.jpg"></td>
+				<center><h1>Automation Purchases</h1></center>
+				<td id="image"><img src="images/victoria.jpg"></td>
 				<td id="nameAndCost">
-					<p><b>HydroVibes</b></p>
-					<p><span id="vibeCost">15</span> Pumps</p>
+					<p><b>Victoria Sponge (+1 Slices Per Second)</b></p>
+					<p><span id="victoriaCost">100</span> Slices Of Cake</p>
 				</td>
-				<td id="amount"><span id="HydroVibes">0</span></td>
+				<td id="amount"><span id="Sponges">0</span></td>
 			</tr>
 		</table>
 		<table class="shopButton" onclick="buyMaxOut()">
 			<tr>
-				<td id="image"><img src="images/vibes.jpg"></td>
+				<td id="image"><img src="images/battenberg.jpg"></td>
 				<td id="nameAndCost">
-					<p><b>Max Out Bottles</b></p>
-					<p><span id="MaxCost">100</span> Pumps</p>
+					<p><b>Battenberg (+5 Slices Per Second)</b></p>
+					<p><span id="battenbergCost">500</span> Slices Of Cake</p>
 				</td>
-				<td id="amount"><span id="MaxOutBottles">0</span></td>
+				<td id="amount"><span id="Battenbergs">0</span></td>
 			</tr>
 		</table>
 		<table class="shopButton" onclick="buyJelqSerum()">
 			<tr>
-				<td id="image"><img src="images/vibes.jpg"></td>
+				<td id="image"><img src="images/red velvet.jpg"></td>
 				<td id="nameAndCost">
-					<p><b>Bottles Of Jelq Serum</b></p>
-					<p><span id="jelqCost">250</span> Pumps</p>
+					<p><b>Red Velvet (+10 Slices Per Second)</b></p>
+					<p><span id="velvetCost">1000</span> Slices Of Cake</p>
 				</td>
-				<td id="amount"><span id="JelqBottles">0</span></td>
+				<td id="amount"><span id="Velvets">0</span></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class = "sectionRight">
+				<table class="shopButton" onclick="buyFlour()">
+			<tr>
+				<center><h1>Recipe Purchases</h1></center>
+				<td id="image"><img src="images/flour.jpg"></td>
+				<td id="nameAndCost">
+					<p><b>Flour (+1 Clicking Power)</b></p>
+					<p><span id="flourCost">25</span> Slices Of Cake</p>
+				</td>
+				<td id="amount"><span id="Flour">0</span></td>
+			</tr>
+		</table>
+		<table class="shopButton" onclick="buySugar()">
+			<tr>
+				<td id="image"><img src="images/sugar.jpg"></td>
+				<td id="nameAndCost">
+					<p><b>Sugar (+5 Clicking Power)</b></p>
+					<p><span id="sugarCost">125</span> Slices Of Cake</p>
+				</td>
+				<td id="amount"><span id="Sugar">0</span></td>
+			</tr>
+		</table>
+		<table class="shopButton" onclick="buyEggs()">
+			<tr>
+				<td id="image"><img src="images/eggs.jpg"></td>
+				<td id="nameAndCost">
+					<p><b>Eggs (+10 Clicking Power)</b></p>
+					<p><span id="eggsCost">250</span> Slices Of Cake</p>
+				</td>
+				<td id="amount"><span id="Eggs">0</span></td>
 			</tr>
 		</table>
 	</div>
@@ -111,72 +156,114 @@
 
 	<script>
 		var score = 0;
+		var clicks = 1;
 
-
-		var vibeCost = 15;
-		var HydroVibes = 0;
-		var maxCost = 100;
-		var MaxOutBottles = 0;
-		var jelqCost = 250;
-		var JelqBottles = 0;
+		var victoriaCost = 100;
+		var Sponges = 0;
+		var battenbergCost = 500;
+		var Battenbergs = 0;
+		var velvetCost = 1000;
+		var Velvets = 0;
+		var flourCost = 25;
+		var Flour = 0;
+		var sugarCost = 125;
+		var Sugar = 0;
+		var eggsCost = 250;
+		var Eggs = 0;
 
 		function buyHydroVibe() {
-			if (score >= vibeCost) {
-				score = score - vibeCost;
-				HydroVibes = HydroVibes +1;
-				vibeCost = Math.round(vibeCost * 1.15);
+			if (score >= victoriaCost) {
+				score = score - victoriaCost;
+				Sponges = Sponges +1;
+				victoriaCost = Math.round(victoriaCost * 1.15);
 
 				document.getElementById("score").innerHTML = score;
 				// Jquery : $("#score").html();
-				document.getElementById("vibeCost").innerHTML = vibeCost;
-				document.getElementById("HydroVibes").innerHTML = HydroVibes;
+				document.getElementById("victoriaCost").innerHTML = victoriaCost;
+				document.getElementById("Sponges").innerHTML = Sponges;
 				updateScorePerSecond();
 			}
 		}
 
 		function buyMaxOut() {
-			if (score >= maxCost) {
-				score = score - maxCost;
-				MaxOutBottles = MaxOutBottles +1;
-				maxCost = Math.round(maxCost * 1.15);
+			if (score >= battenbergCost) {
+				score = score - battenbergCost;
+				Battenbergs = Battenbergs +1;
+				battenbergCost = Math.round(battenbergCost * 1.15);
 
 				document.getElementById("score").innerHTML = score;
-				document.getElementById("maxCost").innerHTML = maxCost;
-				document.getElementById("MaxOutBottles").innerHTML = MaxOutBottles;
+				document.getElementById("battenbergCost").innerHTML = battenbergCost;
+				document.getElementById("Battenbergs").innerHTML = Battenbergs;
 				updateScorePerSecond();
 			}
 		}
 		function buyJelqSerum() {
-			if (score >= jelqCost) {
-				score = score - jelqCost;
-				JelqBottles = JelqBottles +1;
-				jelqCost = Math.round(jelqCost * 1.15);
+			if (score >= velvetCost) {
+				score = score - velvetCost;
+				Velvets = Velvets +1;
+				velvetCost = Math.round(velvetCost * 1.15);
 
 				document.getElementById("score").innerHTML = score;
-				document.getElementById("jelqCost").innerHTML = jelqCost;
-				document.getElementById("JelqBottles").innerHTML = JelqBottles;
+				document.getElementById("velvetCost").innerHTML = velvetCost;
+				document.getElementById("Velvets").innerHTML = Velvets;
 				updateScorePerSecond();
 			}
 		}		
+		function buyFlour() {
+			if (score >= flourCost) {
+				score = score - flourCost;
+				Flour = Flour + 1;
+				flourCost = Math.round(flourCost * 1.15);
+				clicks = clicks + 1;
 
+				document.getElementById("score").innerHTML = score;
+				document.getElementById("flourCost").innerHTML = flourCost;
+				document.getElementById("Flour").innerHTML = Flour;
+				document.getElementById("clicks").innerHTML = clicks;	
+			}
+		}
+		function buySugar() {
+			if (score >= sugarCost) {
+				score = score - sugarCost;
+				Sugar = Sugar + 1;
+				sugarCost = Math.round(sugarCost * 1.15);
+				clicks = clicks + 5;
+
+				document.getElementById("score").innerHTML = score;
+				document.getElementById("sugarCost").innerHTML = sugarCost;
+				document.getElementById("Sugar").innerHTML = Sugar;
+				document.getElementById("clicks").innerHTML = clicks;	
+			}
+		}
+		function buyEggs() {
+			if (score >= eggsCost) {
+				score = score - eggsCost;
+				Eggs = Eggs + 1;
+				eggsCost = Math.round(eggsCost * 1.15);
+				clicks = clicks + 10;
+
+				document.getElementById("score").innerHTML = score;
+				document.getElementById("eggsCost").innerHTML = eggsCost;
+				document.getElementById("Eggs").innerHTML = Eggs;
+				document.getElementById("clicks").innerHTML = clicks;	
+			}
+		}
 		function addToScore(amount) {
 			score = score + amount;
 			document.getElementById("score").innerHTML = score;
 		}
-
 		function updateScorePerSecond() {
-			scorePerSecond = HydroVibes + MaxOutBottles * 5 + JelqBottles * 10;
+			scorePerSecond = Sponges + Battenbergs * 5 + Velvets * 10;
 			document.getElementById("scorepersecond").innerHTML = scorePerSecond;
 		}
-
 		setInterval(function() {
-			score = score + HydroVibes;
-			score = score + MaxOutBottles * 5;
-			score = score + JelqBottles * 10;
+			score = score + Sponges;
+			score = score + Battenbergs * 5;
+			score = score + Velvets * 10;
 
 			document.getElementById("score").innerHTML = score;
 
-			document.title = score + " Pumps - Bathmate Clicker"
+			document.title = score + " Slices Of Cake - Cake Collectors"
 		}, 1000); // 1000ms = 1 second
 
 		</script>
