@@ -85,6 +85,7 @@
 		<div class="clickerContainer">
 			<button id="pumps" onclick="addToScore(clicks)">Get Baking!</p> </button>
 	</div>
+			<br><button onclick="saveGame();">Save Game</button>
 	</div>	
 	<div class = "sectionLeft">
 		<table class="shopButton" onclick="buyVictoria()">
@@ -257,6 +258,48 @@
 			scorePerSecond = Sponges + Battenbergs * 5 + Velvets * 10;
 			document.getElementById("scorepersecond").innerHTML = scorePerSecond;
 		}
+		function loadGame() {
+			var savedGame = JSON.parse(localStorage.getItem("gameSave"));
+			if (typeof savedGame.score !== "undefined") score = savedGame.score;
+			if (typeof savedGame.clicks !== "undefined") clicks = savedGame.clicks;
+			if (typeof savedGame.victoriaCost !== "undefined") victoriaCost = savedGame.victoriaCost;
+			if (typeof savedGame.Sponges !== "undefined") Sponges = savedGame.Sponges;
+			if (typeof savedGame.battenbergCost !== "undefined") battenbergCost = savedGame.battenbergCost;
+			if (typeof savedGame.Battenbergs !== "undefined") Battenbergs = savedGame.Battenbergs;
+			if (typeof savedGame.velvetCost !== "undefined") velvetCost = savedGame.velvetCost;
+			if (typeof savedGame.Velvets !== "undefined") Velvets = savedGame.Velvets;
+			if (typeof savedGame.flourCost !== "undefined") flourCost = savedGame.flourCost;
+			if (typeof savedGame.Flour !== "undefined") Flour = savedGame.Flour;
+			if (typeof savedGame.sugarCost !== "undefined") sugarCost = savedGame.sugarCost;
+			if (typeof savedGame.Sugar !== "undefined") Sugar = savedGame.Sugar;
+			if (typeof savedGame.eggsCost !== "undefined") eggsCost = savedGame.eggsCost;
+			if (typeof savedGame.Eggs !== "undefined") Eggs = savedGame.Eggs;
+
+		}
+		function saveGame() {
+			var gameSave = {
+				score: score,
+				clicks: clicks,
+				victoriaCost: victoriaCost,
+				Sponges: Sponges,
+				battenbergCost: battenbergCost,
+				Battenbergs: Battenbergs,
+				velvetCost: velvetCost,
+				Velvets: Velvets,
+				flourCost: flourCost,
+				Flour: Flour,
+				sugarCost: sugarCost,
+				Sugar: Sugar,
+				eggsCost: eggsCost,
+				Eggs: Eggs
+			};
+			localStorage.setItem("gameSave", JSON.stringify(gameSave));
+
+		}
+
+		window.onload = function() {
+			loadGame();
+		};
 		setInterval(function() {
 			score = score + Sponges;
 			score = score + Battenbergs * 5;
@@ -266,6 +309,10 @@
 
 			document.title = score + " Slices Of Cake - Cake Collectors"
 		}, 1000); // 1000ms = 1 second
+
+		setInterval(function() {
+				savegame()
+		}, 30000);
 
 		</script>
 
