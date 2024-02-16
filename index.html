@@ -86,7 +86,7 @@
 	</div>
 	</div>	
 	<div class = "sectionLeft">
-		<table class="shopButton" onclick="buyHydroVibe()">
+		<table class="shopButton" onclick="buyVictoria()">
 			<tr>
 				<center><h1>Automation Purchases</h1></center>
 				<td id="image"><img src="images/victoria.jpg"></td>
@@ -97,7 +97,7 @@
 				<td id="amount"><span id="Sponges">0</span></td>
 			</tr>
 		</table>
-		<table class="shopButton" onclick="buyMaxOut()">
+		<table class="shopButton" onclick="buyBattenberg()">
 			<tr>
 				<td id="image"><img src="images/battenberg.jpg"></td>
 				<td id="nameAndCost">
@@ -107,7 +107,7 @@
 				<td id="amount"><span id="Battenbergs">0</span></td>
 			</tr>
 		</table>
-		<table class="shopButton" onclick="buyJelqSerum()">
+		<table class="shopButton" onclick="buyVelvet()">
 			<tr>
 				<td id="image"><img src="images/red velvet.jpg"></td>
 				<td id="nameAndCost">
@@ -171,7 +171,7 @@
 		var eggsCost = 250;
 		var Eggs = 0;
 
-		function buyHydroVibe() {
+		function buyVictoria() {
 			if (score >= victoriaCost) {
 				score = score - victoriaCost;
 				Sponges = Sponges +1;
@@ -185,7 +185,7 @@
 			}
 		}
 
-		function buyMaxOut() {
+		function buyBattenberg() {
 			if (score >= battenbergCost) {
 				score = score - battenbergCost;
 				Battenbergs = Battenbergs +1;
@@ -197,7 +197,7 @@
 				updateScorePerSecond();
 			}
 		}
-		function buyJelqSerum() {
+		function buyVelvet() {
 			if (score >= velvetCost) {
 				score = score - velvetCost;
 				Velvets = Velvets +1;
