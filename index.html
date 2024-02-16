@@ -1,21 +1,112 @@
 <!DOCTYPE html>
 <head>
-<style>
-	}
+	<style>
+		.sectionLeft {
+			float: left;
+			width:70%;
+		}
+		.sectionRight {
+			float: right;
+			width:30%;
+		}
+		.scoreContainer {
+			background-color: rgb(238, 238, 238, 0.6);
+			width:95%;
+			padding:5px;
+			font-size: 24px;
+			font-weight: bold;
+			border: 2px solid;
+		}
+		.shopButton {
+			background-color: #b5b5b5;
+			transition: all .2s ease-in-out;
+			border-radius: 10px;
+			width:100%;
+			margin: 0px 0px 10px 0px;
+		}
+		.shopButton:hover {
+			background-color:: #c7c7c7;
+			transition: all .2s ease-in-out;
+		}
+		.shopButton #image {
+			width:25%;
+		}
+		.shopButton img {
+			height:64px;
+			width:64px;
+		}
+		.shopButton #nameAndCost p{
+			margin: 0px;
+			width: 60%;
+			float:left;
+		}
+		.shopButton #nameAndCost p:first-of-type {
+			font-size:24px;
+		}
+		.shopButton #amount {
+			font-size:48px;
+			color: #595959;
+			font-family: roboto;
+			width:15%;
+		}
+		#pumps {
+			height:78px;
+			width:95%;
+			font-size:40px;
+			font-family: roboto;
+			border-radius:20px;
+		}
 </style>
 </head>
 <body>
-	<center><h1><b> Welcome To Bathmate Clicker</b></h1>
-		<p>Pumps: <span id="score">0</span></p>
+		<center>
+	<h1><b> Welcome To Bathmate Clicker</b></h1><br><br>
+	<div class="sectionLeft">
+	<center>
+	
+	<div class="scoreContainer">
+		<p><span id="score">0</span> Pumps</p>
 		<p><span id="scorepersecond">0</span> Pumps Per Second</p>
-		<p>HydroVibes: <span id="HydroVibes">0</span></p>
-		<p>Max Out Bottles: <span id="MaxOutBottles">0</span></p>
-		<p>Jelq Bottles: <span id="JelqBottles">0</span></p>				
-		<button id="pumps" onclick="addToScore(1)">Gain 1 Pump</button>
-		<button id="vibes" onclick="buyHydroVibe()">Gain 1 HydroVibe for<br> <span id="vibeCost">15</span> Pumps</button>
-		<button id="maxout" onclick="buyMaxOut()">Gain 1 Bottle Of Max Out for<br> <span id="maxCost">100</span> Pumps</button>
-		<button id="jelq" onclick="buyJelqSerum()">Gain 1 Bottle Of Jelq Serum for<br> <span id="jelqCost">250</span> Pumps</button>
+	</center>
+	<br><br>
+		<div class="clickerContainer">
+			<button id="pumps" onclick="addToScore(1)">Gain 1 Pump</button>
+	</div>
+	</div>	
 
+
+	<div class = "sectionRight">
+		<table class="shopButton" onclick="buyHydroVibe()">
+			<tr>
+				<td id="image"><img src="images/vibes.jpg"></td>
+				<td id="nameAndCost">
+					<p><b>HydroVibes</b></p>
+					<p><span id="vibeCost">15</span> Pumps</p>
+				</td>
+				<td id="amount"><span id="HydroVibes">0</span></td>
+			</tr>
+		</table>
+		<table class="shopButton" onclick="buyMaxOut()">
+			<tr>
+				<td id="image"><img src="images/vibes.jpg"></td>
+				<td id="nameAndCost">
+					<p><b>Max Out Bottles</b></p>
+					<p><span id="MaxCost">100</span> Pumps</p>
+				</td>
+				<td id="amount"><span id="MaxOutBottles">0</span></td>
+			</tr>
+		</table>
+		<table class="shopButton" onclick="buyJelqSerum()">
+			<tr>
+				<td id="image"><img src="images/vibes.jpg"></td>
+				<td id="nameAndCost">
+					<p><b>Bottles Of Jelq Serum</b></p>
+					<p><span id="jelqCost">250</span> Pumps</p>
+				</td>
+				<td id="amount"><span id="JelqBottles">0</span></td>
+			</tr>
+		</table>
+	</div>
 
 
 	<script>
@@ -83,6 +174,8 @@
 			score = score + JelqBottles * 10;
 
 			document.getElementById("score").innerHTML = score;
+
+			document.title = score + " Pumps - Bathmate Clicker"
 		}, 1000); // 1000ms = 1 second
 
 		</script>	
