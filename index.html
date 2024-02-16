@@ -299,6 +299,21 @@
 
 		window.onload = function() {
 			loadGame();
+			updateScorePerSecond();
+			document.getElementById("score").innerHTML = score;
+			document.getElementById("clicks").innerHTML = clicks;							
+			document.getElementById("victoriaCost").innerHTML = victoriaCost;
+			document.getElementById("Sponges").innerHTML = Sponges;
+			document.getElementById("battenbergCost").innerHTML = battenbergCost;
+			document.getElementById("Battenbergs").innerHTML = Battenbergs;
+			document.getElementById("velvetCost").innerHTML = velvetCost;
+			document.getElementById("Velvets").innerHTML = Velvets;
+			document.getElementById("flourCost").innerHTML = flourCost;
+			document.getElementById("Flour").innerHTML = Flour;
+			document.getElementById("sugarCost").innerHTML = sugarCost;
+			document.getElementById("Sugar").innerHTML = Sugar;
+			document.getElementById("eggsCost").innerHTML = eggsCost;
+			document.getElementById("Eggs").innerHTML = Eggs;
 		};
 		setInterval(function() {
 			score = score + Sponges;
@@ -312,7 +327,7 @@
 
 		setInterval(function() {
 				savegame()
-		}, 30000);
+		}, 10000); // 10000ms = 10 seconds
 
 		</script>
 
