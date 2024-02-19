@@ -6,22 +6,21 @@
 			margin-right:35px;
 			float: right;
 			width:45%;
-		}
+	}
 		.sectionLeft {
 			margin-top:20px;
 			margin-left:35px;
 			float: left;
 			width:45%;
-		}
+	}
 		.scoreContainer {
 			background-color: rgb(238, 238, 238, 0.6);
-			width:95%;
-			padding:5px;
+			width:99%;
 			font-size: 24px;
 			font-weight: bold;
 			border: 2px solid;
 			border-radius: 10px;
-		}
+	}
 		.shopButton {
 			background-color: #b5b5b5;
 			transition: all .2s ease-in-out;
@@ -29,58 +28,126 @@
 			border: 2px solid;
 			width:100%;
 			margin: 0px 0px 10px 0px;
-		}
+	}
 		.shopButton:hover {
 			background-color:: #c7c7c7;
 			transition: all .2s ease-in-out;
-		}
+	}
 		.shopButton #image {
 			width:25%;
-		}
+	}
 		.shopButton img {
 			height:64px;
 			width:64px;
-		}
+	}
 		.shopButton #nameAndCost p{
 			margin: 0px;
 			width: 100%;
 			float:left;
-		}
+	}
 		.shopButton #nameAndCost p:first-of-type {
 			font-size:24px;
-		}
+	}
 		.shopButton #amount {
 			font-size:48px;
 			color: #595959;
 			font-family: roboto;
 			width:15%;
-		}
+	}
 		#pumps {
 			height:78px;
-			width:96%;
-			padding:10px;
+			width:99%;
+			padding-top:10px;
 			font-size:40px;
 			font-family: roboto;
-			border-radius:20px;
-			margin-left:35px;
-		}
+			border-radius:10px;
+	}
 		.header {
 			font-family: roboto;
 			font-size: 30px;
-		}
+	}
+		#navbar {
+			background-color: rgb(238, 238, 238, 0.6);
+			height:95px;
+			width:100%;
+			border:2px solid;
+			border-radius:10px;
+	}
+		#navbar .navbrand {
+			width:20%;
+			float:left;
+			margin-right:20px;
+			padding-bottom:15px;
+			border: 2px solid;
+			border-top:12px;
+			border-left:12px;
+			border-bottom:12px;
+	}
+		#navbar .navlinks{
+			width:65%;
+			float:right;
+			font-family: roboto;
+	}
+		#navbar .navlinks ul{
+			list-style-type:none;
+			padding:0px;
+			margin:0px;
+	}
+		#navbar .navlinks ul li{
+			float:right;
+			margin-left:20px;
+			margin-right:20px;
+			padding-bottom:5px;
+			border: 2px solid;
+			border-top:12px;
+			border-bottom:12px;
+	}
+		#navbar .navlinks ul li a:link{
+			text-decoration:none;
+			padding-left:20px;
+			padding-right:20px;
+			font-size:26px;
+	}
+		#navbar .navlinks ul li a:hover{
+			color: red;
+			border-radius:6px;
+	}
+		.money{
+			width:15%;
+			padding-left:20px;
+			padding-right:20px;
+	}
+		.study{
+			width:15%;
+			padding-left:20px;
+			padding-right:20px;
+	}
+		.upgrade{
+			width:15%;
+			padding-left:20px;
+			padding-right:20px;
+	}
 </style>
 </head>
 <body>
-		<center>
-	<div class="header">
-	<h1><b> Welcome To Cake Collectors!</b></h1><br>
+	<div id="navbar">
+	<div class="navbrand"><h1><center>Cake Collectors</center></h1></div>
+	<div class="navlinks">
+		<ul>
+			<li class="upgrade"><a href=""><center><b>Upgrades</b></center></a></li>
+			<li class="study"><a href=""><center><b>Studies</b></center></a></li>
+			<li class="money"><a href=""><center><b>Money Making</b></center></a></li>
+		</ul>
 	</div>
-	
+</div>
+<br>	
 	<div class="scoreContainer">
+		<center>
 		<p><span id="score">0</span> Slices Of Cake</p>
 		<p><span id="scorepersecond">0</span> Slices Per Second</p>
 		<p><span id="clicks">1</span> Clicking Power</p>
 	</center>
+</div>
 	<br><br>
 		<div class="clickerContainer">
 			<button id="pumps" onclick="addToScore(clicks)">Get Baking!</p> </button>
@@ -315,17 +382,23 @@
 			document.getElementById("eggsCost").innerHTML = eggsCost;
 			document.getElementById("Eggs").innerHTML = Eggs;
 		};
+
 		setInterval(function() {
 			score = score + Sponges;
-			score = score + Battenbergs * 5;
-			score = score + Velvets * 10;
 
 			document.getElementById("score").innerHTML = score;
 
 			document.title = score + " Slices Of Cake - Cake Collectors"
 		}, 1000); // 1000ms = 1 second
-
 		setInterval(function() {
+			score = score + Battenbergs * 5;
+
+			document.getElementById("score").innerHTML = score;
+		}, 5000); // 5000ms = 5 seconds
+		setInterval(function() {
+			score = score + Velvets * 10;
+
+			document.getElementById("score").innerHTML = score;
 				savegame()
 		}, 10000); // 10000ms = 10 seconds
 
