@@ -189,8 +189,8 @@ function buyOffice() {
     }
 }
 function buyMeetings() {
-    if (money >= meetingCost && green >= meetingGreen) {
-        money = money - meetingCost;
+    if (money >= meetingsCost && green >= meetingsGreen) {
+        money = money - meetingsCost;
         meetingOn = true;
 
         document.getElementById("money").innerHTML = money;
