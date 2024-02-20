@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <head>
 	<link href="styles.css" rel="stylesheet">
-	<style>
-
+<style>
 </style>
 </head>
 <body>
+	<div id="topscroll">
 	<div id="navbar">
 		<div class="navbrand"><h1><center>Cake Collectors</center></h1></div>
 		<div class="navlinks">
 			<ul>
 				<li class="upgrade"><a href="upgrades.html"><center><b>Upgrades</b></center></a></li>
 				<li class="study"><a href="study.html"><center><b>Studies</b></center></a></li>
-				<li class="money"><a href="money.html"><center><b>Money Making</b></center></a></li>
-				<li class="home"><a href="index.html"><center><b>Home</b></center></a></li>
+				<li class="money"><a href="index.html"><center><b>Money</b></center></a></li>
 			</ul>
 		</div>
 	</div>
@@ -30,14 +29,195 @@
 				</li>
 				<li class="research">
 					<center>
-						<b><p id="money">Money: $<span id="money">0</span></p></b>				
+						<b><p id="moneys">Money: $<span id="money">5</span></p></b>				
 						<b><p id="red">Red Research Points: <span id="red">0</span></p></b>
 						<b><p id="greens">Green Research Points: <span id="green">0</span></p></b>
 						<b><p id="blue">Blue Research Points: <span id="blue">0</span></p></b>
 					</center>
 				</li>			
 			</ul>
-		</div>	
-
-	<script src="code.js"></script>
+		</div><br><br>
+	</div>
+		<div class = "moneymakers">
+			<table class = "table">
+				<tr>
+					<td id="image"><img src="images/paper.jpg"></td>
+					<td id="nameAndCost";>
+						<p><center><b>Task Information</b></center></p>
+						<p><center><b>Do Your Paper Route</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Rewards For Completion</b></center></p>
+						<p><center><b>$5 + 1 Green Research Point</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Time To Complete</b></center></p>
+						<p><center><b>5 Seconds</b></center></p>
+					</td>
+					<td id="unlock">
+						<button class="unlock1" onclick="buyPaper()"><center><b>Unlock Job for $5 + 0 Green Research Points</b></center></button>
+					</td>
+				</tr>
+			</table><br><br>
+			<table class = "table">
+				<tr>
+					<td id="image"><img src="images/walk.png"></td>
+					<td id="nameAndCost";>
+						<p><center><b>Task Information</b></center></p>
+						<p><center><b>Walk The Neighbourhood Dogs</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Rewards For Completion</b></center></p>
+						<p><center><b>$10 + 3 Green Research Points</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Time To Complete</b></center></p>
+						<p><center><b>10 Seconds</b></center></p>
+					</td>
+					<td id="unlock">
+						<button class="unlock2" onclick="buyDogs()"><center><b>Unlock Job for $125 + 25 Green Research Points</b></center></button>
+					</td>
+				</tr>
+			</table><br><br>
+			<table class = "table">
+				<tr>
+					<td id="image"><img src="images/mow.jpg"></td>
+					<td id="nameAndCost";>
+						<p><center><b>Task Information</b></center></p>
+						<p><center><b>Mow Some Lawns</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Rewards For Completion</b></center></p>
+						<p><center><b>$15 + 6 Green Research Points</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Time To Complete</b></center></p>
+						<p><center><b>15 Seconds</b></center></p>
+					</td>
+					<td id="unlock">
+						<button class="unlock3" onclick="buyLawns()"><center><b>Unlock Job for $570 + 152 Green Research Points</b></center></button>
+					</td>
+				</tr>
+			</table><br><br>
+			<table class = "table">
+				<tr>
+					<td id="image"><img src="images/snow.jpg"></td>
+					<td id="nameAndCost";>
+						<p><center><b>Task Information</b></center></p>
+						<p><center><b>Shovel Snow From Drives</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Rewards For Completion</b></center></p>
+						<p><center><b>$20 + 10 Green Research Points</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Time To Complete</b></center></p>
+						<p><center><b>20 Seconds</b></center></p>
+					</td>
+					<td id="unlock">
+						<button class="unlock4" onclick="buySnow()"><center><b>Unlock Job for $1,710 + 570 Green Research Points</b></center></button>
+					</td>
+				</tr>
+			</table><br><br>
+			<table class = "table">
+				<tr>
+					<td id="image"><img src="images/food.jpg"></td>
+					<td id="nameAndCost";>
+						<p><center><b>Task Information</b></center></p>
+						<p><center><b>Deliver Food</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Rewards For Completion</b></center></p>
+						<p><center><b>$25 + 15 Green Research Points</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Time To Complete</b></center></p>
+						<p><center><b>25 Seconds</b></center></p>
+					</td>
+					<td id="unlock">
+						<button class="unlock5" onclick="buyFood()"><center><b>Unlock Job for $4,300 + 1,720 Green Research Points</b></center></button>
+					</td>
+				</tr>
+			</table><br><br>
+			<table class = "table">
+				<tr>
+					<td id="image"><img src="images/handy.jpg"></td>
+					<td id="nameAndCost";>
+						<p><center><b>Task Information</b></center></p>
+						<p><center><b>Do Some Handy Work</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Rewards For Completion</b></center></p>
+						<p><center><b>$30 + 21 Green Research Points</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Time To Complete</b></center></p>
+						<p><center><b>30 Seconds</b></center></p>
+					</td>
+					<td id="unlock">
+						<button class="unlock6" onclick="buyHandy()"><center><b>Unlock Job for $9,675 + 4,515 Green Research Points</b></center></button>
+					</td>
+				</tr>
+			</table><br><br>
+			<table class = "table">
+				<tr>
+					<td id="image"><img src="images/office.jpg"></td>
+					<td id="nameAndCost";>
+						<p><center><b>Task Information</b></center></p>
+						<p><center><b>Do Your Office Job</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Rewards For Completion</b></center></p>
+						<p><center><b>$35 + 28 Green Research Points</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Time To Complete</b></center></p>
+						<p><center><b>35 Seconds</b></center></p>
+					</td>
+					<td id="unlock">
+						<button class="unlock7" onclick="buyOffice()"><center><b>Unlock Job for $20,370 + 10,864 Green Research Points</b></center></button>
+					</td>
+				</tr>
+			</table><br><br>
+			<table class = "table">
+				<tr>
+					<td id="image"><img src="images/meeting.png"></td>
+					<td id="nameAndCost";>
+						<p><center><b>Task Information</b></center></p>
+						<p><center><b>Conduct Some Business Meetings</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Rewards For Completion</b></center></p>
+						<p><center><b>$40 + 36 Green Research Points</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Time To Complete</b></center></p>
+						<p><center><b>40 Seconds</b></center></p>
+					</td>
+					<td id="unlock">
+						<button class="unlock8" onclick="buyMeetings()"><center><b>Unlock Job for $40,740 + 24,444 Green Research Points</b></center></button>
+					</td>
+				</tr>
+			</table><br><br>
+			<table class = "table">
+				<tr>
+					<td id="image"><img src="images/stocks.jpg"></td>
+					<td id="nameAndCost";>
+						<p><center><b>Task Information</b></center></p>
+						<p><center><b>Buy And Sell Stocks</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Rewards For Completion</b></center></p>
+						<p><center><b>$45 + 45 Green Research Points</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Time To Complete</b></center></p>
+						<p><center><b>45 Seconds</b></center></p>
+					</td>
+					<td id="unlock">
+						<button class="unlock9" onclick="buyStocks()"><center><b>Unlock Job for $78,660 + 52,440 Green Research Points</b></center></button>
+					</td>
+				</tr>
+			</table><br><br>
+			<table class = "table">
+				<tr>
+					<td id="image"><img src="images/crypto.jpg"></td>
+					<td id="nameAndCost";>
+						<p><center><b>Task Information</b></center></p>
+						<p><center><b>Buy And Sell Crypto</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Rewards For Completion</b></center></p>
+						<p><center><b>$50 + 55 Green Research Points</b></center></p></td>
+					<td id="nameAndCost";>
+						<p><center><b>Time To Complete</b></center></p>
+						<p><center><b>50 Seconds</b></center></p>
+					</td>
+					<td id="unlock">
+						<button class="unlock10" onclick="buyCrypto()"><center><b>Unlock Job for $147,600 + 108,240 Green Research Points</b></center></button>
+					</td>
+				</tr>
+			</table><br><br>
+	<script src="money.js"></script>
 </body>
