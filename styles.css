@@ -1,0 +1,169 @@
+		#topscroll{
+			position:sticky;
+			top: 0;
+		}
+		#navbar {
+			background-color: black;
+			color: white;
+			height:95px;
+			width:100%;
+			border:2px solid;
+			border-radius:10px;
+		}
+		main{
+			z-index: 0;
+		}
+		#navbar .navbrand {
+			width:20%;
+			float:left;
+			margin-right:20px;
+			padding-bottom:15px;
+			border: 2px solid;
+			border-top:12px;
+			border-left:12px;
+			border-bottom:12px;
+		}
+		#navbar .navlinks{
+			width:65%;
+			float:right;
+			font-family: roboto;
+		}
+		#navbar .navlinks ul{
+			list-style-type:none;
+			padding:0px;
+			margin:0px;
+		}
+		#navbar .navlinks ul li{
+			float:right;
+			margin-left:20px;
+			margin-right:20px;
+			padding-bottom:5px;
+			border: 2px solid;
+			border-top:12px;
+			border-bottom:12px;
+		}
+		#navbar .navlinks ul li a:link{
+			text-decoration:none;
+			padding-left:20px;
+			padding-right:20px;
+			font-size:26px;
+		}
+		#navbar .navlinks ul li a:hover{
+			color: red;
+			border-radius:6px;
+		}
+		.moneys{
+			width:15%;
+			padding-left:20px;
+			padding-right:20px;
+		}
+		.greens{
+			width:15%;
+			padding-left:20px;
+			padding-right:20px;
+		}
+		.study{
+			width:15%;
+			padding-left:20px;
+			padding-right:20px;
+		}
+		.upgrade{
+			width:15%;
+			padding-left:20px;
+			padding-right:20px;
+		}
+		.home{
+			width:15%;
+			padding-left:20px;
+			padding-right:20px;
+		}
+		.ingredients{
+			float:left;
+			width:30%;
+			list-style-type:none;
+			margin-top:-40px;	
+		}
+		.research{
+			float:right;
+			width:30%;
+			list-style-type:none;
+			margin-top:-40px;	
+		}
+		.scorebar {
+			background-color: rgb(238, 238, 238, 0.6);
+			height:270px;
+			width:100%;
+			border:2px solid;
+			border-radius:10px;
+			font-family:roboto;
+			font-size:30px;
+			position: sticky;
+			top:0;
+			z-index: 1;
+		}
+		.moneymakers {
+			margin-top:20px;
+			margin-left:35px;
+			float: left;
+			width:45%;
+		}
+		.paperroute {
+			background-color: #b5b5b5;
+			transition: all .2s ease-in-out;
+			border-radius: 10px;
+			border: 2px solid;
+			width:100%;
+			margin: 0px 0px 10px 0px;
+		}
+		.paperroute:hover {
+			background-color:: #c7c7c7;
+			transition: all .2s ease-in-out;
+		}
+		.paperroute #image {
+			width:25%;
+		}
+		.paperroute img {
+			height:64px;
+			width:64px;
+		}
+		.paperroute #nameAndCost p{
+			margin: 0px;
+			width: 100%;
+			float:left;
+		}
+		.paperroute #nameAndCost p:first-of-type {
+			font-size:24px;
+		}
+		.paperroute #amount {
+			font-size:48px;
+			color: #595959;
+			font-family: roboto;
+			width:15%;
+		}
+		.left{
+			width:40%;
+			float:left;
+		}
+		.right{
+			width:40%;
+			float:right;
+		}
+		.paper{
+			border:2px solid;
+			border-radius:5px;
+		}
+		.dogs{
+			border:2px solid;
+			border-radius:5px;
+		}
+		.snow{
+			border:2px solid;
+			border-radius:5px;
+		}
+		.unlock{
+			width:100%;
+			height:50px;
+			font-family: roboto;
+			font-size: 20px;
+			font-weight: bold;
+		}

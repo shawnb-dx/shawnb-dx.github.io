@@ -6,6 +6,7 @@
 </style>
 </head>
 <body>
+	<div id="topscroll">
 	<div id="navbar">
 		<div class="navbrand"><h1><center>Cake Collectors</center></h1></div>
 		<div class="navlinks">
@@ -30,14 +31,43 @@
 				</li>
 				<li class="research">
 					<center>
-						<b><p id="money">Money: $<span id="money">0</span></p></b>				
+						<b><p id="moneys">Money: $<span id="money">5</span></p></b>				
 						<b><p id="red">Red Research Points: <span id="red">0</span></p></b>
 						<b><p id="greens">Green Research Points: <span id="green">0</span></p></b>
 						<b><p id="blue">Blue Research Points: <span id="blue">0</span></p></b>
 					</center>
 				</li>			
 			</ul>
-		</div>	
+		</div><br><br>
+	</div>
+	<div class = "left">
+		<div class = "paper">
+			<center>
+			<h1>Do Your Paper Route</h1>
+			<p style="font-size:26px";><b>$5 + 1 Green Research Point</b></p>
+			<p style="font-size:26px"><b>Time To Complete: <span>5s</span></b></p>
+			<button class="unlock" onclick="buyPaper()"><center><b>Unlock Job</b></center></button>
+			</center>
+		</div><br><br>
+	</div>	
+	<div class = "right">
+		<div class = "dogs">
+			<center>
+			<h1>Walk The Neighbour Dogs</h1>
+			<p style="font-size:26px";><b>$10 + 1 Green Research Point</b></p>
+			<p style="font-size:26px"><b>Time To Complete: <span>10s</span></b></p>
+			<button class="unlock" onclick="buyPaper()"><center><b>Unlock Job</b></center></button>
+			</center>
+		</div><br><br>
+		<div class = "snow">
+			<center>
+			<h1>Shovel Snow From Drivways</h1>
+			<p style="font-size:26px";><b>$20 + 1 Green Research Point</b></p>
+			<p style="font-size:26px"><b>Time To Complete: <span>10s</span></b></p>
+			<button class="unlock" onclick="buyPaper()"><center><b>Unlock Job</b></center></button>
+			</center>
+		</div><br>		
+	</div>	
 
-	<script src="code.js"></script>
+	<script src="money.js"></script>
 </body>
