@@ -7,70 +7,78 @@
 			border-radius:10px;
 		}
 		#navbar .navbrand {
-			width:25%;
+			width:12%;
 			float:left;
-			margin-right:20px;
-			padding-bottom:15px;
-			font-size:26px;
-			margin-top:-25px;
+			padding-right:10px;
+			font-size:16px;
+			margin-left:40px;
 		}
 		#navbar .navlinks{
-			width:70%;
+			width:95%;
+			margin: auto;
 			float:right;
-			font-size:30px;
-			padding-bottom:-20px;
+			font-size:26px;
 		}
 		#navbar .navlinks ul{
 			list-style-type:none;
 		}
 		#navbar .navlinks ul li{
 			float:right;
-			margin-left:20px;
-			margin-right:20px;
+			margin-left:10px;
+			margin-right:10px;
+			padding-top:-100px;
 			color:white;
 			border-left:2px solid white;
 		}
 		#navbar .navlinks ul li a:link{
 			text-decoration:none;
-			padding-left:20px;
-			padding-right:20px;
+			padding-left:10px;
+			padding-right:10px;
 			color:white;
 		}
 		#navbar .navlinks ul li a:visited{
 			color: white;
 			border-radius:6px;
-			font-size:30px;
+			font-size:26px;
 		}
 		.study{
-			width:25%;
-			padding-left:20px;
-			padding-right:20px;
-			font-size:36px;
-			margin-top:-50px;
+			width:20%;
+			padding-left:10px;
+			padding-top:-100px;			
+			padding-right:10px;
+			font-size:26px;
+			margin-top:-80px;
+		}
+		.achievements{
+			width:20%;
+			padding-left:10px;
+			padding-right:10px;
+			font-size:26px;
+			margin-top:-80px;
 		}
 		.upgrade{
-			width:25%;
-			padding-left:20px;
-			padding-right:20px;
-			font-size:36px;
-			margin-top:-50px;
+			width:20%;
+			padding-left:10px;
+			padding-right:10px;
+			font-size:26px;
+			margin-top:-80px;
 		}
 		.money{
-			width:25%;
-			padding-left:20px;
-			padding-right:20px;
-			font-size:36px;	
-			margin-top:-50px;
+			width:20%;
+			padding-left:10px;
+			padding-right:10px;		
+			font-size:26px;	
+			margin-top:-80px;
 		}
 		.moneys{
 			width:25%;
-			padding-left:20px;
-			padding-right:20px;
+			padding-left:10px;
+			padding-right:10px;
 		}
 		.greens{
 			width:25%;
-			padding-left:20px;
-			padding-right:20px;
+			padding-left:10px;
+			padding-right:10px;
 			font-size:26px;
 		}
 		.ingredients{

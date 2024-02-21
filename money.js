@@ -348,42 +348,42 @@ function sellCrypto() {
 
 setInterval(function() {
 	paperRoute();
-}, 500);
+}, 5000);
 
 setInterval(function() {
     walkDog();
-}, 1000);
+}, 10000);
 
 setInterval(function() {
     mowLawns();
-}, 1500);
+}, 15000);
 
 setInterval(function() {
     shovelSnow();
-}, 2000);
+}, 20000);
 
 setInterval(function() {
     deliverFood();
-}, 2500);
+}, 25000);
 
 setInterval(function() {
     doHandy();
-}, 3000);
+}, 30000);
 
 setInterval(function() {
     doOffice();
-}, 3500);
+}, 35000);
 
 setInterval(function() {
     conductMeetings();
-}, 4000);
+}, 40000);
 
 setInterval(function() {
     sellStocks();
-}, 4500);
+}, 45000);
 
 setInterval(function() {
     sellCrypto();
-}, 5000);
+}, 50000);
 
 
