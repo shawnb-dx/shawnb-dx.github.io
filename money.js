@@ -435,7 +435,7 @@ window.onload = function() {
 
 setInterval(function() {
 	paperRoute();
-}, 50);
+}, 5000);
 
 setInterval(function() {
     walkDog();
