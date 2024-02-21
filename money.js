@@ -252,8 +252,81 @@ function buyCrypto() {
     }
 }
 
+function saveGame() {
+	var gameSave = {
+		money: money,
+		green: green,
+		paperCost: paperCost,
+		paperOn: paperOn,
+		dogCost: dogCost,
+		dogGreen: dogGreen,
+		dogOn: dogOn,
+		lawnCost: lawnCost,
+		lawnGreen: lawnGreen,
+		lawnOn: lawnOn,
+		snowCost: snowCost,
+		snowGreen: snowGreen,
+		snowOn: snowOn,
+		foodCost: foodCost,
+		foodGreen: foodGreen,
+		foodOn: foodOn,
+ 		handyCost: handyCost,
+		handyGreen: handyGreen,
+		handyOn: handyOn,
+		officeCost: officeCost,
+		officeGreen: officeGreen,
+		officeOn: officeOn,
+		meetingsCost: meetingsCost,
+		meetingsGreen: meetingsGreen,
+		meetingsOn: meetingsOn,
+		stocksCost:stocksCost,
+		stocksGreen:stocksGreen,
+		stocksOn: stocksOn,
+		cryptoCost: cryptoCost,
+		cryptoGreen: cryptoGreen,
+		cryptoOn:cryptoOn
+	}
+	localStorage.setItem("gameSave", JSON.stringify(gameSave));
+}
 
-
+function loadGame() {
+	var savedGame = JSON.parse(localStorage.getItem("gameSave"));
+	if (typeof savedGame.money !== "undefined") money = savedGame.money;
+	if (typeof savedGame.green !== "undefined") green = savedGame.green;
+	if (typeof savedGame.paperCost !== "undefined") paperCost = savedGame.paperCost;
+	if (typeof savedGame.paperOn !== "undefined") paperOn = savedGame.paperOn;
+	if (typeof savedGame.dogCost !== "undefined") dogCost = savedGame.dogCost;
+	if (typeof savedGame.dogGreen !== "undefined") dogGreen = savedGame.dogGreen;
+	if (typeof savedGame.dogOn !== "undefined") dogOn = savedGame.dogOn;
+	if (typeof savedGame.lawnCost !== "undefined") lawnCost = savedGame.lawnCost;
+	if (typeof savedGame.lawnGreen !== "undefined") lawnGreen = savedGame.lawnGreen;
+	if (typeof savedGame.lawnOn !== "undefined") lawnOn = savedGame.lawnOn;
+	if (typeof savedGame.snowCost !== "undefined") snowCost = savedGame.snowCost;
+	if (typeof savedGame.snowGreen !== "undefined") snowGreen = savedGame.snowGreen;
+	if (typeof savedGame.snowOn !== "undefined") snowOn = savedGame.snowOn;
+	if (typeof savedGame.foodCost !== "undefined") foodCost = savedGame.foodCost;
+	if (typeof savedGame.foodGreen !== "undefined") foodGreen = savedGame.foodGreen;
+	if (typeof savedGame.foodOn !== "undefined") foodOn = savedGame.foodOn;
+	if (typeof savedGame.handyCost !== "undefined") handyCost = savedGame.handyCost;
+	if (typeof savedGame.handyGreen !== "undefined") handyGreen = savedGame.handyGreen;
+	if (typeof savedGame.handyOn !== "undefined") handyOn = savedGame.handyOn;
+	if (typeof savedGame.officeCost !== "undefined") officeCost = savedGame.officeCost;
+	if (typeof savedGame.officeGreen !== "undefined") officeGreen = savedGame.officeGreen;
+	if (typeof savedGame.officeOn !== "undefined") officeOn = savedGame.officeOn;
+	if (typeof savedGame.meetingsCost !== "undefined") meetingsCost = savedGame.meetingsCost;
+	if (typeof savedGame.meetingsGreen !== "undefined") meetingsGreen = savedGame.meetingsGreen;
+	if (typeof savedGame.meetingsOn !== "undefined") meetingsOn = savedGame.meetingsOn;
+	if (typeof savedGame.stocksCost !== "undefined") stocksCost = savedGame.stocksCost;
+	if (typeof savedGame.stocksGreen !== "undefined") stocksGreen = savedGame.stocksGreen;
+	if (typeof savedGame.stocksOn !== "undefined") stocksOn = savedGame.stocksOn;
+	if (typeof savedGame.cryptoCost !== "undefined") cryptoCost = savedGame.cryptoCost;
+	if (typeof savedGame.cryptoGreen !== "undefined") cryptoGreen = savedGame.cryptoGreen;	
+	if (typeof savedGame.cryptoOn !== "undefined") cryptoOn = savedGame.cryptoOn;	
+									
+}
+setInterval(function() {
+	saveGame();
+}, 10);
 
 function paperRoute() {
     if (paperOn === true) {
@@ -345,6 +418,11 @@ function sellCrypto() {
     }
 }
 
+window.onload = function() {
+	loadGame();
+	document.getElementById("money").innerHTML = money;
+    document.getElementById("green").innerHTML = green;
+};
 
 setInterval(function() {
 	paperRoute();
