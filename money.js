@@ -251,6 +251,15 @@ function buyCrypto() {
         }
     }
 }
+function clearSave() {
+    localStorage.clear();
+    document.getElementById("money").textContent = "5";
+    document.getElementById("green").textContent = "0";
+
+    location.reload();
+}
+
+document.getElementById("clearSaveBtn").addEventListener("click", clearSave);
 
 function saveGame() {
 	var gameSave = {
@@ -326,7 +335,7 @@ function loadGame() {
 }
 setInterval(function() {
 	saveGame();
-}, 10);
+}, 5000);
 
 function paperRoute() {
     if (paperOn === true) {
@@ -426,7 +435,7 @@ window.onload = function() {
 
 setInterval(function() {
 	paperRoute();
-}, 5000);
+}, 50);
 
 setInterval(function() {
     walkDog();
