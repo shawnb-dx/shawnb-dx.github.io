@@ -1,3 +1,15 @@
+		#topscroll {
+  			position: fixed;
+  			top: 0;
+  			left: 0;
+  			width: 100%;
+  			background-color: white; /* Adjust as needed */
+  			z-index: 1000; /* Adjust as needed to ensure it appears above other content */
+		}
+		.content-below-topscroll{
+			margin-top:380px;
+		}
+
 		#navbar {
 			background-color: black;
 			color: white;
