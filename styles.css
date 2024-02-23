@@ -11,6 +11,7 @@
 			float:right;
 			font-size:26px;
 			text-decoration: none;
+			color:white;
 		}
 		#navbar .navlinks button a:visited{
 			color:white;
