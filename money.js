@@ -42,213 +42,223 @@ var cryptoOn = false;
 
 
 function buyPaper() {
-    if (money >= paperCost) {
-        money = money - paperCost;
+    if (paperOn) {
+        applyButtonStyles();
+    } else if (money >= paperCost) {
+        money -= paperCost;
         paperOn = true;
-
         document.getElementById("money").innerHTML = money;
+        applyButtonStyles();
+    }
+}
 
-        var unlockButton = document.querySelector('.unlock1');
-        if (unlockButton) {
-            unlockButton.textContent = "Job Unlocked!";
-                unlockButton.disabled = true;
-
-            var buttonStyles = window.getComputedStyle(unlockButton);
-            
-            unlockButton.style.color = buttonStyles.color;
-            unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
-            unlockButton.style.fontFamily = buttonStyles.fontFamily;
-
-        }
+function applyButtonStyles() {
+    var unlockButton = document.querySelector('.unlock1');
+    if (unlockButton) {
+        unlockButton.textContent = "Job Unlocked!";
+        unlockButton.disabled = true;
+        var buttonStyles = window.getComputedStyle(unlockButton);
+        unlockButton.style.color = buttonStyles.color;
+        unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
+        unlockButton.style.fontFamily = buttonStyles.fontFamily;
     }
 }
 function buyDogs() {
-    if (money >= dogCost && green >= dogGreen) {
-        money = money - dogCost;
+    if (dogOn) {
+        applyButtonStyles2();
+    } else if (money >= dogCost && green >= dogGreen) {
+        money -= dogCost;
         dogOn = true;
-
         document.getElementById("money").innerHTML = money;
+        applyButtonStyles2();
+    }
+}
 
-        var unlockButton = document.querySelector('.unlock2');
-        if (unlockButton) {
-            unlockButton.textContent = "Job Unlocked!";
-                unlockButton.disabled = true;
-
-            var buttonStyles = window.getComputedStyle(unlockButton);
-            
-            unlockButton.style.color = buttonStyles.color;
-            unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
-            unlockButton.style.fontFamily = buttonStyles.fontFamily;
-
-        }
+function applyButtonStyles2() {
+    var unlockButton = document.querySelector('.unlock2');
+    if (unlockButton) {
+        unlockButton.textContent = "Job Unlocked!";
+        unlockButton.disabled = true;
+        var buttonStyles = window.getComputedStyle(unlockButton);
+        unlockButton.style.color = buttonStyles.color;
+        unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
+        unlockButton.style.fontFamily = buttonStyles.fontFamily;
     }
 }
 function buyLawns() {
-    if (money >= lawnCost && green >= lawnGreen) {
-        money = money - lawnCost;
+    if (lawnOn) {
+        applyButtonStyles3();
+    } else if (money >= lawnCost && green >= lawnGreen) {
+        money -= lawnCost;
         lawnOn = true;
-
         document.getElementById("money").innerHTML = money;
+        applyButtonStyles3();
+    }
+}
 
-        var unlockButton = document.querySelector('.unlock3');
-        if (unlockButton) {
-            unlockButton.textContent = "Job Unlocked!";
-                unlockButton.disabled = true;
-
-            var buttonStyles = window.getComputedStyle(unlockButton);
-            
-            unlockButton.style.color = buttonStyles.color;
-            unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
-            unlockButton.style.fontFamily = buttonStyles.fontFamily;
-
-        }
+function applyButtonStyles3() {
+    var unlockButton = document.querySelector('.unlock3');
+    if (unlockButton) {
+        unlockButton.textContent = "Job Unlocked!";
+        unlockButton.disabled = true;
+        var buttonStyles = window.getComputedStyle(unlockButton);
+        unlockButton.style.color = buttonStyles.color;
+        unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
+        unlockButton.style.fontFamily = buttonStyles.fontFamily;
     }
 }
 function buySnow() {
-    if (money >= snowCost && green >= snowGreen) {
-        money = money - snowCost;
+    if (snowOn) {
+        applyButtonStyles4();
+    } else if (money >= snowCost && green >= snowGreen) {
+        money -= snowCost;
         snowOn = true;
-
         document.getElementById("money").innerHTML = money;
+        applyButtonStyles4();
+    }
+}
 
-        var unlockButton = document.querySelector('.unlock4');
-        if (unlockButton) {
-            unlockButton.textContent = "Job Unlocked!";
-                unlockButton.disabled = true;
-
-            var buttonStyles = window.getComputedStyle(unlockButton);
-            
-            unlockButton.style.color = buttonStyles.color;
-            unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
-            unlockButton.style.fontFamily = buttonStyles.fontFamily;
-
-        }
+function applyButtonStyles4() {
+    var unlockButton = document.querySelector('.unlock4');
+    if (unlockButton) {
+        unlockButton.textContent = "Job Unlocked!";
+        unlockButton.disabled = true;
+        var buttonStyles = window.getComputedStyle(unlockButton);
+        unlockButton.style.color = buttonStyles.color;
+        unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
+        unlockButton.style.fontFamily = buttonStyles.fontFamily;
     }
 }
 function buyFood() {
-    if (money >= foodCost && green >= foodGreen) {
-        money = money - foodCost;
+    if (foodOn) {
+        applyButtonStyles5();
+    } else if (money >= foodCost && green >= foodGreen) {
+        money -= foodCost;
         foodOn = true;
-
         document.getElementById("money").innerHTML = money;
+        applyButtonStyles5();
+    }
+}
 
-        var unlockButton = document.querySelector('.unlock5');
-        if (unlockButton) {
-            unlockButton.textContent = "Job Unlocked!";
-                unlockButton.disabled = true;
-
-            var buttonStyles = window.getComputedStyle(unlockButton);
-            
-            unlockButton.style.color = buttonStyles.color;
-            unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
-            unlockButton.style.fontFamily = buttonStyles.fontFamily;
-
-        }
+function applyButtonStyles5() {
+    var unlockButton = document.querySelector('.unlock5');
+    if (unlockButton) {
+        unlockButton.textContent = "Job Unlocked!";
+        unlockButton.disabled = true;
+        var buttonStyles = window.getComputedStyle(unlockButton);
+        unlockButton.style.color = buttonStyles.color;
+        unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
+        unlockButton.style.fontFamily = buttonStyles.fontFamily;
     }
 }
 function buyHandy() {
-    if (money >= handyCost && green >= handyGreen) {
-        money = money - handyCost;
+    if (handyOn) {
+        applyButtonStyles6();
+    } else if (money >= handyCost && green >= handyGreen) {
+        money -= handyCost;
         handyOn = true;
-
         document.getElementById("money").innerHTML = money;
+        applyButtonStyles6();
+    }
+}
 
-        var unlockButton = document.querySelector('.unlock6');
-        if (unlockButton) {
-            unlockButton.textContent = "Job Unlocked!";
-                unlockButton.disabled = true;
-
-            var buttonStyles = window.getComputedStyle(unlockButton);
-            
-            unlockButton.style.color = buttonStyles.color;
-            unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
-            unlockButton.style.fontFamily = buttonStyles.fontFamily;
-
-        }
+function applyButtonStyles6() {
+    var unlockButton = document.querySelector('.unlock6');
+    if (unlockButton) {
+        unlockButton.textContent = "Job Unlocked!";
+        unlockButton.disabled = true;
+        var buttonStyles = window.getComputedStyle(unlockButton);
+        unlockButton.style.color = buttonStyles.color;
+        unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
+        unlockButton.style.fontFamily = buttonStyles.fontFamily;
     }
 }
 function buyOffice() {
-    if (money >= officeCost && green >= officeGreen) {
-        money = money - officeCost;
+    if (officeOn) {
+        applyButtonStyles7();
+    } else if (money >= officeCost && green >= officeGreen) {
+        money -= officeCost;
         officeOn = true;
-
         document.getElementById("money").innerHTML = money;
+        applyButtonStyles7();
+    }
+}
 
-        var unlockButton = document.querySelector('.unlock7');
-        if (unlockButton) {
-            unlockButton.textContent = "Job Unlocked!";
-                unlockButton.disabled = true;
-
-            var buttonStyles = window.getComputedStyle(unlockButton);
-            
-            unlockButton.style.color = buttonStyles.color;
-            unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
-            unlockButton.style.fontFamily = buttonStyles.fontFamily;
-
-        }
+function applyButtonStyles7() {
+    var unlockButton = document.querySelector('.unlock7');
+    if (unlockButton) {
+        unlockButton.textContent = "Job Unlocked!";
+        unlockButton.disabled = true;
+        var buttonStyles = window.getComputedStyle(unlockButton);
+        unlockButton.style.color = buttonStyles.color;
+        unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
+        unlockButton.style.fontFamily = buttonStyles.fontFamily;
     }
 }
 function buyMeetings() {
-    if (money >= meetingsCost && green >= meetingsGreen) {
-        money = money - meetingsCost;
-        meetingOn = true;
-
+    if (meetingsOn) {
+        applyButtonStyles8();
+    } else if (money >= meetingsCost && green >= meetingsGreen) {
+        money -= meetingsCost;
+        meetingsOn = true;
         document.getElementById("money").innerHTML = money;
+        applyButtonStyles8();
+    }
+}
 
-        var unlockButton = document.querySelector('.unlock8');
-        if (unlockButton) {
-            unlockButton.textContent = "Job Unlocked!";
-                unlockButton.disabled = true;
-
-            var buttonStyles = window.getComputedStyle(unlockButton);
-            
-            unlockButton.style.color = buttonStyles.color;
-            unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
-            unlockButton.style.fontFamily = buttonStyles.fontFamily;
-
-        }
+function applyButtonStyles8() {
+    var unlockButton = document.querySelector('.unlock8');
+    if (unlockButton) {
+        unlockButton.textContent = "Job Unlocked!";
+        unlockButton.disabled = true;
+        var buttonStyles = window.getComputedStyle(unlockButton);
+        unlockButton.style.color = buttonStyles.color;
+        unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
+        unlockButton.style.fontFamily = buttonStyles.fontFamily;
     }
 }
 function buyStocks() {
-    if (money >= stocksCost && green >= stocksGreen) {
-        money = money - stocksCost;
+    if (stocksOn) {
+        applyButtonStyles9();
+    } else if (money >= stocksCost && green >= stocksGreen) {
+        money -= stocksCost;
         stocksOn = true;
-
         document.getElementById("money").innerHTML = money;
+        applyButtonStyles9();
+    }
+}
 
-        var unlockButton = document.querySelector('.unlock9');
-        if (unlockButton) {
-            unlockButton.textContent = "Job Unlocked!";
-                unlockButton.disabled = true;
-
-            var buttonStyles = window.getComputedStyle(unlockButton);
-            
-            unlockButton.style.color = buttonStyles.color;
-            unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
-            unlockButton.style.fontFamily = buttonStyles.fontFamily;
-
-        }
+function applyButtonStyles9() {
+    var unlockButton = document.querySelector('.unlock9');
+    if (unlockButton) {
+        unlockButton.textContent = "Job Unlocked!";
+        unlockButton.disabled = true;
+        var buttonStyles = window.getComputedStyle(unlockButton);
+        unlockButton.style.color = buttonStyles.color;
+        unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
+        unlockButton.style.fontFamily = buttonStyles.fontFamily;
     }
 }
 function buyCrypto() {
-    if (money >= cryptoCost && green >= cryptoGreen) {
-        money = money - cryptoCost;
+    if (cryptoOn) {
+        applyButtonStyles10();
+    } else if (money >= cryptoCost && green >= cryptoGreen) {
+        money -= cryptoCost;
         cryptoOn = true;
-
         document.getElementById("money").innerHTML = money;
+        applyButtonStyles10();
+    }
+}
 
-        var unlockButton = document.querySelector('.unlock10');
-        if (unlockButton) {
-            unlockButton.textContent = "Job Unlocked!";
-                unlockButton.disabled = true;
-
-            var buttonStyles = window.getComputedStyle(unlockButton);
-            
-            unlockButton.style.color = buttonStyles.color;
-            unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
-            unlockButton.style.fontFamily = buttonStyles.fontFamily;
-
-        }
+function applyButtonStyles10() {
+    var unlockButton = document.querySelector('.unlock10');
+    if (unlockButton) {
+        unlockButton.textContent = "Job Unlocked!";
+        unlockButton.disabled = true;
+        var buttonStyles = window.getComputedStyle(unlockButton);
+        unlockButton.style.color = buttonStyles.color;
+        unlockButton.style.backgroundColor = buttonStyles.backgroundColor;
+        unlockButton.style.fontFamily = buttonStyles.fontFamily;
     }
 }
 function clearSave() {
@@ -294,7 +304,7 @@ function saveGame() {
 		cryptoCost: cryptoCost,
 		cryptoGreen: cryptoGreen,
 		cryptoOn:cryptoOn
-	}
+	};
 	localStorage.setItem("gameSave", JSON.stringify(gameSave));
 }
 
@@ -428,14 +438,46 @@ function sellCrypto() {
 }
 
 window.onload = function() {
-	loadGame();
-	document.getElementById("money").innerHTML = money;
+    loadGame();
+    document.getElementById("money").innerHTML = money;
     document.getElementById("green").innerHTML = green;
+
+    if (paperOn) {
+        applyButtonStyles();
+    }
+    if (dogOn) {
+        applyButtonStyles2();
+    }
+    if (lawnOn) {
+        applyButtonStyles3();
+    }
+    if (snowOn) {
+        applyButtonStyles4();
+    }
+    if (handyOn) {
+        applyButtonStyles5();
+    }
+    if (foodOn) {
+        applyButtonStyles6();
+    }
+    if (officeOn) {
+        applyButtonStyles7();
+    }
+    if (meetingsOn) {
+        applyButtonStyles8();
+    }
+    if (stocksOn) {
+        applyButtonStyles9();
+    }
+    if (cryptoOn) {
+        applyButtonStyles10();
+    }
 };
+
 
 setInterval(function() {
 	paperRoute();
-}, 5000);
+}, 50);
 
 setInterval(function() {
     walkDog();
