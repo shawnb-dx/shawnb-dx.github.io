@@ -68,6 +68,7 @@ function buyDogs() {
         applyButtonStyles2();
     } else if (money >= dogCost && green >= dogGreen) {
         money -= dogCost;
+        green -= dogGreen;
         dogOn = true;
         document.getElementById("money").innerHTML = money;
         applyButtonStyles2();
@@ -90,6 +91,7 @@ function buyLawns() {
         applyButtonStyles3();
     } else if (money >= lawnCost && green >= lawnGreen) {
         money -= lawnCost;
+        green -= lawnGreen;
         lawnOn = true;
         document.getElementById("money").innerHTML = money;
         applyButtonStyles3();
@@ -112,6 +114,7 @@ function buySnow() {
         applyButtonStyles4();
     } else if (money >= snowCost && green >= snowGreen) {
         money -= snowCost;
+        green -= snowGreen;
         snowOn = true;
         document.getElementById("money").innerHTML = money;
         applyButtonStyles4();
@@ -134,6 +137,7 @@ function buyFood() {
         applyButtonStyles5();
     } else if (money >= foodCost && green >= foodGreen) {
         money -= foodCost;
+        green -= foodGreen;
         foodOn = true;
         document.getElementById("money").innerHTML = money;
         applyButtonStyles5();
@@ -156,6 +160,7 @@ function buyHandy() {
         applyButtonStyles6();
     } else if (money >= handyCost && green >= handyGreen) {
         money -= handyCost;
+        green -= handyGreen;
         handyOn = true;
         document.getElementById("money").innerHTML = money;
         applyButtonStyles6();
@@ -178,6 +183,7 @@ function buyOffice() {
         applyButtonStyles7();
     } else if (money >= officeCost && green >= officeGreen) {
         money -= officeCost;
+        green -= officeGreen;
         officeOn = true;
         document.getElementById("money").innerHTML = money;
         applyButtonStyles7();
@@ -200,6 +206,7 @@ function buyMeetings() {
         applyButtonStyles8();
     } else if (money >= meetingsCost && green >= meetingsGreen) {
         money -= meetingsCost;
+        green -= meetingsGreen;
         meetingsOn = true;
         document.getElementById("money").innerHTML = money;
         applyButtonStyles8();
@@ -222,6 +229,7 @@ function buyStocks() {
         applyButtonStyles9();
     } else if (money >= stocksCost && green >= stocksGreen) {
         money -= stocksCost;
+        green -= stockGreen;
         stocksOn = true;
         document.getElementById("money").innerHTML = money;
         applyButtonStyles9();
@@ -244,6 +252,7 @@ function buyCrypto() {
         applyButtonStyles10();
     } else if (money >= cryptoCost && green >= cryptoGreen) {
         money -= cryptoCost;
+        green -= cryptoGreen;
         cryptoOn = true;
         document.getElementById("money").innerHTML = money;
         applyButtonStyles10();
