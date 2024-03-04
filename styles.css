@@ -41,7 +41,7 @@ body {
     display: none;
 }
 
-#upgrade-list,
+#achievements-list,
 #earn-money-list,
 #study-list {
     list-style: none;
@@ -50,7 +50,7 @@ body {
     text-align: left;
 }
 
-#upgrade-list li,
+#achievements-list li,
 #earn-money-list li,
 #study-list li {
     cursor: pointer;
@@ -59,13 +59,13 @@ body {
     color: green; /* Default color for items */
 }
 
-#upgrade-list li:last-child,
+#achievements-list li:last-child,
 #earn-money-list li:last-child,
 #study-list li:last-child {
     border-bottom: none;
 }
 
-#upgrade-list li:hover,
+#achievements-list li:hover,
 #earn-money-list li:hover,
 #study-list li:hover {
     background-color: #eee;
@@ -73,7 +73,4 @@ body {
 
 .grayed-out {
     color: gray; /* Color for grayed out items */
-}
-#achievements-list {
-    list-style-type: none;
 }

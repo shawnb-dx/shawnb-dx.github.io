@@ -10,45 +10,64 @@ document.addEventListener("DOMContentLoaded", function() {
     const studyList = document.getElementById("study-list");
     const achievementsList = document.getElementById("achievements-list");
 
-    let money = 500;
+    let money = 0;
     let researchPoints = 0;
     let cakes = 0;
     let moneyIntervalID;
     let researchPointsIntervalID;
 
-    // Auto-save interval (every 1 seconds)
-    const autoSaveInterval = setInterval(() => {
-        localStorage.setItem("gameState", JSON.stringify({ money, researchPoints, cakes, }));
-    }, 1000);
-
-    // Auto-load saved game state
-    const savedGameState = localStorage.getItem("gameState");
-    if (savedGameState) {
-        const { money: savedMoney, researchPoints: savedResearchPoints, cakes: savedCakes, } = JSON.parse(savedGameState);
-        money = savedMoney;
-        researchPoints = savedResearchPoints;
-        cakes = savedCakes;
-    }
     // Define money earning methods with a purchased flag
     const moneyMethods = [
-        { name: "Sell Cakes", moneyPerSecond: 10, cost: 100, purchased: false },
-        { name: "Bake Sale", moneyPerSecond: 20, cost: 500, purchased: false },
-        { name: "Catering Service", moneyPerSecond: 30, cost: 1000, purchased: false },
+        { name: "Paper Route", moneyPerSecond: 2, cost: 0, purchased: false },
+        { name: "Walk Dogs", moneyPerSecond: 5, cost: 250, purchased: false },
+        { name: "Become A Twitch Affiliate", moneyPerSecond: 10, cost: 1000, purchased: false },
+        { name: "Sell Products At Farmers Market", moneyPerSecond: 20, cost: 2000, purchased: false },
+        { name: "Brew And Sell Own Beer", moneyPerSecond: 35, cost: 4000, purchased: false },
+        { name: "Give A Tour Guide", moneyPerSecond: 50, cost: 8000, purchased: false },
+        { name: "Become A Personal Trainer", moneyPerSecond: 75, cost: 16000, purchased: false },
+        { name: "Become A Twitch Partner", moneyPerSecond: 100, cost: 32000, purchased: false },
+        { name: "Take A Sponsorship Deal", moneyPerSecond: 150, cost: 64000, purchased: false },
+        { name: "Star In A Movie", moneyPerSecond: 200, cost: 128000, purchased: false },
         // Add more money earning methods here...
     ];
 
     // Define study methods
     const studyMethods = [
-        { name: "Experiment", researchPointsPerSecond: 5, cost: 200, purchased: false },
-        { name: "Research Papers", researchPointsPerSecond: 10, cost: 500, purchased: false },
-        { name: "Lab Work", researchPointsPerSecond: 15, cost: 1000, purchased: false },
+        { name: "Read A Book", researchPointsPerSecond: 2, cost: 100, purchased: false },
+        { name: "Spend Time On Wikipedia", researchPointsPerSecond: 5, cost: 250, purchased: false },
+        { name: "Do A Mock Test", researchPointsPerSecond: 10, cost: 1000, purchased: false },
+        { name: "Experiment", researchPointsPerSecond: 20, cost: 2000, purchased: false },
+        { name: "Process Lab Work", researchPointsPerSecond: 35, cost: 4000, purchased: false },
+        { name: "Write A Research Paper", researchPointsPerSecond: 50, cost: 8000, purchased: false },
+        { name: "Give A TED Talk", researchPointsPerSecond: 75, cost: 16000, purchased: false },
+        { name: "Conduct A Field Study", researchPointsPerSecond: 100, cost: 32000, purchased: false },
+        { name: "Teach Some Students", researchPointsPerSecond: 150, cost: 64000, purchased: false },
+        { name: "Write A Best Selling Book", researchPointsPerSecond: 200, cost: 128000, purchased: false },
         // Add more study methods here...
     ];
 
     // Define achievements
     const achievements = [
-        { name: "Raking it in", description: "Earn 10,000 money", unlocked: false },
-        { name: "Grow Your Mind", description: "Earn 2,000 RP", unlocked: false },
+        { name: "Starting Out Small", description: "Earn Your First $100.", unlocked: false },
+        { name: "A Ruff Road Ahead", description: "Earn Enough To Unlock Dog Walking", unlocked: false },
+        { name: "Starting A Livestream Empire", description: "Earn Enough To Start Streaming", unlocked: false },
+        { name: "Gift Of The Gab", description: "Earn Enough To Sell At Farmers Markets", unlocked: false },
+        { name: "Brewmaster", description: "Earn Enough To Make Your Own Beer", unlocked: false },
+        { name: "And On Your Left...", description: "Earn Enough To Become A Tour Guide", unlocked: false },
+        { name: "No Pain, No Gain", description: "Earn Enough To Become A Personal Trainer", unlocked: false },
+        { name: "Coming At You Live!", description: "Earn Enough To Make It Big On Twitch", unlocked: false },
+        { name: "Use My Affiliate Code", description: "Earn Enough To Get Your First Sponsorship", unlocked: false },
+        { name: "Name Up In Lights", description: "Earn Enough To Star In A Movie", unlocked: false },
+        { name: "Love A Good Book", description: "Gain 100 Research Points Reading Books", unlocked: false },
+        { name: "Wikipedia Knows All", description: "Gain Enough Knowledge In Order To Browse Wikipedia", unlocked: false },
+        { name: "Passing The Tests", description: "Gain Enough Knowledge In Order To Get Test Ready ", unlocked: false },
+        { name: "Experimentalist", description: "Gain Enough Knowledge In Order To Conduct Experiments ", unlocked: false },
+        { name: "Lab Prodigy", description: "Gain Enough Knowledge In Order To Become A Lab Technician ", unlocked: false },
+        { name: "Scholarly Author", description: "Gain Enough Knowledge In Order To Write Your Own Paper ", unlocked: false },
+        { name: "My Name Is TED", description: "Gain Enough Knowledge In Order To Become A TED Talker ", unlocked: false },
+        { name: "Out In The Fields Of Glory", description: "Gain Enough Knowledge In Order To Conduct Field Research", unlocked: false },
+        { name: "Shaping Young Minds", description: "Gain Enough Knowledge In Order To Teach A Class ", unlocked: false },
+        { name: "Bestselling Author", description: "Gain Enough Knowledge In Order To Become An Author", unlocked: false },
         // Add more achievements here...
     ];
 function updateColors() {
@@ -114,7 +133,7 @@ function renderMoneyMethods() {
 
     moneyMethods.forEach((method, index) => {
         const methodItem = document.createElement("li");
-        methodItem.textContent = `${method.name} - Earns ${method.moneyPerSecond} RP/s - Cost: $${method.cost} (Earns ${method.moneyPerSecond} per second)`;
+        methodItem.textContent = `${method.name} - Earns $${method.moneyPerSecond}/s - Cost: $${method.cost} (Earns ${method.moneyPerSecond} per second)`;
 
         if (method.purchased) {
             methodItem.textContent += " - BOUGHT";
@@ -265,14 +284,122 @@ function checkAchievements() {
         achievements.forEach(achievement => {
             if (!achievement.unlocked) {
                 switch (achievement.name) {
-                    case "Raking it in":
-                        if (money >= 10000) {
+                    case "Starting Out Small":
+                        if (money >= 100) {
                             achievement.unlocked = true;
                             alert(`Achievement Unlocked: ${achievement.name}`);
                         }
                         break;
-                    case "Grow Your Mind":
+                    case "A Ruff Road Ahead":
+                        if (money >= 250) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Starting A Livestream Empire":
+                        if (money >= 1000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Gift Of The Gab":
+                        if (money >= 2000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Brewmaster":
+                        if (money >= 4000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "And On Your Left...":
+                        if (money >= 8000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "No Pain, No Gain":
+                        if (money >= 16000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Coming At You Live!":
+                        if (money >= 32000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Use My Affiliate Code":
+                        if (money >= 64000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Name Up In Lights":
+                        if (money >= 128000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Love A Good Book":
+                        if (researchPoints >= 100) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Wikipedia Knows All":
+                        if (researchPoints >= 250) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Passing The Tests":
+                        if (researchPoints >= 1000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Experimentalist":
                         if (researchPoints >= 2000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Lab Prodigy":
+                        if (researchPoints >= 4000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Scholarly Author":
+                        if (researchPoints >= 8000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "My Name Is TED":
+                        if (researchPoints >= 16000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Out In The Fields Of Glory":
+                        if (researchPoints >= 32000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Shaping Young Minds":
+                        if (researchPoints >= 64000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Bestselling Author":
+                        if (researchPoints >= 128000) {
                             achievement.unlocked = true;
                             alert(`Achievement Unlocked: ${achievement.name}`);
                         }
@@ -284,8 +411,13 @@ function checkAchievements() {
     }
 
 function renderAchievements() {
-    // Clear existing achievements list
+    // Clear existing achievements lists
     achievementsList.innerHTML = "";
+    const earnedAchievementsList = document.createElement("ul"); // Create a separate list for earned achievements
+    earnedAchievementsList.classList.add("earned-achievements");
+
+    const unearnedAchievementsList = document.createElement("ul"); // Create a separate list for unearned achievements
+    unearnedAchievementsList.classList.add("unearned-achievements");
 
     // Loop through achievements array
     achievements.forEach(achievement => {
@@ -293,32 +425,103 @@ function renderAchievements() {
 
         // Check if the achievement is unlocked
         if (achievement.unlocked) {
-            // If unlocked, display in green
+            // If unlocked, display in earned list
             achievementItem.style.color = "green";
             achievementItem.textContent = `${achievement.name}: ${achievement.description} - Unlocked`;
+            earnedAchievementsList.appendChild(achievementItem);
         } else {
-            // If locked, display progress towards completion
-            let progress = "";
-            switch (achievement.name) {
-                case "Raking it in":
-                    progress = `Progress: $${money} / $10000`;
-                    break;
-                case "Grow Your Mind":
-                    progress = `Progress: ${researchPoints} / 2000 RP`;
-                    break;
-                // Add more cases for other achievements...
-                default:
-                    progress = "Progress: N/A";
-                    break;
-            }
-            achievementItem.style.color = "red";
+            // If locked, display in unearned list
+            const progress = getAchievementProgress(achievement); // Function to get achievement progress
             achievementItem.textContent = `${achievement.name}: ${achievement.description} - ${progress}`;
+            unearnedAchievementsList.appendChild(achievementItem);
         }
-
-        // Append achievement item to achievements list
-        achievementsList.appendChild(achievementItem);
     });
+
+    // Add heading for earned achievements list
+    const earnedAchievementsHeading = document.createElement("h3");
+    earnedAchievementsHeading.textContent = "Earned Achievements";
+    achievementsList.appendChild(earnedAchievementsHeading);
+    
+    // Append earned achievements list to main achievements list
+    achievementsList.appendChild(earnedAchievementsList);
+
+    // Add heading for unearned achievements list
+    const unearnedAchievementsHeading = document.createElement("h3");
+    unearnedAchievementsHeading.textContent = "Unearned Achievements";
+    achievementsList.appendChild(unearnedAchievementsHeading);
+
+    // Append unearned achievements list to main achievements list
+    achievementsList.appendChild(unearnedAchievementsList);
 }
+
+// Function to get achievement progress
+function getAchievementProgress(achievement) {
+    let progress = "";
+    switch (achievement.name) {
+        case "Starting Out Small":
+            progress = `Progress: $${money} / $100`;
+            break;
+        case "A Ruff Road Ahead":
+            progress = `Progress: $${money} / $250`;
+            break;
+        case "Starting A Livestream Empire":
+            progress = `Progress: $${money} / $1000`;
+            break;
+        case "Gift Of The Gab":
+            progress = `Progress: $${money} / $2000`;
+            break;
+        case "Brewmaster":
+            progress = `Progress: $${money} / $4000`;
+            break;
+        case "And On Your Left...":
+            progress = `Progress: $${money} / $8000`;
+            break;
+        case "No Pain, No Gain":
+            progress = `Progress: $${money} / $16000`;
+            break;
+        case "Coming At You Live!":
+            progress = `Progress: $${money} / $32000`;
+            break;
+        case "Use My Affiliate Code":
+            progress = `Progress: $${money} / $64000`;
+            break;
+        case "Name Up In Lights":
+            progress = `Progress: $${money} / $128000`;
+            break;
+        case "Love A Good Book":
+            progress = `Progress: ${researchPoints} / 100`;
+            break;
+        case "Wikipedia Knows All":
+            progress = `Progress: ${researchPoints} / 250`;
+            break;
+        case "Passing The Tests":
+            progress = `Progress: ${researchPoints} / 1000`;
+            break;
+        case "Experimentalist":
+            progress = `Progress: ${researchPoints} / 2000`;
+            break;
+        case "Lab Prodigy":
+            progress = `Progress: ${researchPoints} / 4000`;
+            break;
+        case "Scholarly Author":
+            progress = `Progress: ${researchPoints} / 8000`;
+            break;
+        case "My Name Is TED":
+            progress = `Progress: ${researchPoints} / 16000`;
+            break;
+        case "Out In The Fields Of Glory":
+            progress = `Progress: ${researchPoints} / 32000`;
+            break;
+        case "Shaping Young Minds":
+            progress = `Progress: ${researchPoints} / 64000`;
+            break;
+        case "Bestselling Author":
+            progress = `Progress: ${researchPoints} / 128000`;
+            break;
+    }
+    return progress;
+}
+
 
     function updateUI() {
         moneyElement.textContent = money;
