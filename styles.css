@@ -1,241 +1,79 @@
-		#topscroll {
-  			position: fixed;
-  			top: 0;
-  			left: 0;
-  			width: 100%;
-  			background-color: white; /* Adjust as needed */
-  			z-index: 1000; /* Adjust as needed to ensure it appears above other content */
-		}
-		.content-below-topscroll{
-			margin-top:380px;
-		}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-		#navbar {
-			background-color: black;
-			color: white;
-			text-decoration: none;
-			height:55px;
-			width:100%;
-			border:2px solid;
-			border-radius:10px;
-		}
-		.navlinks{
-			width:95%;
-			float:right;
-			font-size:26px;
-			text-decoration: none;
-			color:white;
-		}
-		#navbar .navlinks button a:visited{
-			color:white;
-			background-color: black;
-			text-decoration: none;
-		}
-		.study{
-			width:15%;
-			height:50px;
-			padding-left:10px;
-			padding-top:-100px;			
-			padding-right:10px;
-			font-size:26px;
-			margin-left:25px;
-			margin-right:25px;
-			float:right;
-			background-color: black;
-			text-decoration: none;
-			border:none;
-			color:white;
-		}
-		.title{
-			width:20%;
-			height:50px;
-			border-radius:10px;
-			padding-left:10px;
-			padding-right:10px;
-			margin-left:-95px;
-			font-size:26px;
-			color:red;
-			background-color: black;
-			color:white;
-		}
-		.achievements{
-			width:15%;
-			height:50px;
-			padding-left:10px;
-			padding-right:10px;
-			font-size:26px;
-			margin-left:25px;
-			margin-right:25px;
-			float:right;
-			background-color: black;
-			text-decoration: none;
-			border:none;
-			color:white;
-		}
-		.upgrade{
-			width:15%;
-			height:50px;
-			padding-left:10px;
-			padding-right:10px;
-			font-size:26px;
-			margin-left:25px;
-			margin-right:25px;
-			float:right;
-			background-color: black;
-			text-decoration: none;
-			border:none;
-			color:white;
-		}
-		.money{
-			width:15%;
-			height:50px;
-			padding-left:10px;
-			padding-right:10px;		
-			font-size:26px;	
-			margin-left:25px;
-			margin-right:25px;
-			float:right;
-			background-color: black;
-			text-decoration: none;
-			border:none;
-			color:white;
-		}
-		.clearSaveBtn{
-			width:20%;
-			padding-left:10px;
-			padding-right:10px;		
-			font-size:26px;	
-			margin-top:-80px;
-		}
-		.moneys{
-			margin-top:15px;
-			width:25%;
-			padding-left:10px;
-			padding-right:10px;
-		}
-		.greens{
-			margin-top:15px;
-			width:25%;
-			padding-left:10px;
-			padding-right:10px;
-			font-size:26px;
-		}
-		.ingredients{
-			margin-top:15px;
-			float:left;
-			width:30%;
-			list-style-type:none;
-			margin-top:-40px;	
-		}
-		.research{
-			margin-top:15px;	
-			float:right;
-			width:30%;
-			list-style-type:none;
-			margin-top:-40px;	
-		}
-		.scorebar {
-			background-color: rgb(238, 238, 238, 0.6);
-			height:270px;
-			margin-left:5px;
-			width:99%;
-			border:2px solid;
-			border-radius:10px;
-			font-family:roboto;
-			font-size:30px;
-		}
-		.paper{
-			border:2px solid;
-			border-radius:5px;
-			width:100%;
-			font-size:30px;
-		}
-		.table{
-			border-radius: 10px;
-			border: 2px solid;
-			width:100%;
-			height:17px;
-		}
-		.table #image{
-			width:25%;
-			float:left;
-		}
-		.table img {
-			height:128px;
-			width:128px;
-		}
-		.table #nameAndCost{
-			width:35%;
-			font-size:20px;
-			border-left:2px solid;
-			margin-top:3px;
-		}
-		.table button {
-			height:128px;
-			width: 400px;
-			float:right;
-			margin:0px;
-			padding:0px;
-			border:2px solid;
-			border-radius:10px;
-		}
-		.lawns{
-			border:2px solid;
-			border-radius:5px;
-			width:100%;
-		}
-		.food{
-			border:2px solid;
-			border-radius:5px;
-			width:100%;
-		}
-		.office{
-			border:2px solid;
-			border-radius:5px;
-			width:100%;
-		}
-		.stocks{
-			border:2px solid;
-			border-radius:5px;
-			width:100%;
-		}						
-		.dogs{
-			border:2px solid;
-			border-radius:5px;
-			width:100%;
-		}
-		.snow{
-			border:2px solid;
-			border-radius:5px;
-			width:100%;
-		}
-		.handy{
-			border:2px solid;
-			border-radius:5px;
-			width:100%;
-		}
-		.meetings{
-			border:2px solid;
-			border-radius:5px;
-			width:100%;
-		}
-		.crypto{
-			border:2px solid;
-			border-radius:5px;
-			width:100%;
-		}
-		.unlock{
-			width:100%;
-			height:50px;
-			font-family: roboto;
-			font-size: 20px;
-			font-weight: bold;
-		}
-		.left button{
-			width:100%;
-			height:50px;
-		}
-		.right button{
-			width:100%;
-			height:50px;
-		}
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.actions {
+    display: flex; /* Use flexbox */
+    justify-content: space-around; /* Distribute items evenly along the main axis */
+    margin-top: 20px;
+}    
+
+.resource-info {
+    margin-bottom: 20px;
+}
+
+.resource-info ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Optional: remove default padding */
+    margin: 0; /* Optional: remove default margin */
+}
+
+.actions button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.actions button:hover {
+    background-color: #eee;
+}
+
+.hidden {
+    display: none;
+}
+
+#upgrade-list,
+#earn-money-list,
+#study-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    text-align: left;
+}
+
+#upgrade-list li,
+#earn-money-list li,
+#study-list li {
+    cursor: pointer;
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+    color: green; /* Default color for items */
+}
+
+#upgrade-list li:last-child,
+#earn-money-list li:last-child,
+#study-list li:last-child {
+    border-bottom: none;
+}
+
+#upgrade-list li:hover,
+#earn-money-list li:hover,
+#study-list li:hover {
+    background-color: #eee;
+}
+
+.grayed-out {
+    color: gray; /* Color for grayed out items */
+}
+#achievements-list {
+    list-style-type: none;
+}
