@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const moneyElement = document.getElementById("money");
     const researchPointsElement = document.getElementById("research-points");
-    const cakesElement = document.getElementById("cakes");
+   // const cakesElement = document.getElementById("cakes");
     const earnMoneyBtn = document.getElementById("earn-money-btn");
     const studyBtn = document.getElementById("study-btn");
     const bakeBtn = document.getElementById("bake-btn");
@@ -526,7 +526,7 @@ function getAchievementProgress(achievement) {
     function updateUI() {
         moneyElement.textContent = money;
         researchPointsElement.textContent = researchPoints;
-        cakesElement.textContent = Math.round(cakes);
+        //cakesElement.textContent = Math.round(cakes);
         renderAchievements();
     }
 
