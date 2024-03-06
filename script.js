@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const moneyElement = document.getElementById("money");
     const researchPointsElement = document.getElementById("research-points");
+    const levelElement = document.getElementById("level");
     const earnMoneyBtn = document.getElementById("earn-money-btn");
     const studyBtn = document.getElementById("study-btn");
     const bakeBtn = document.getElementById("bake-btn");
@@ -8,10 +9,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const earnMoneyList = document.getElementById("earn-money-list");
     const studyList = document.getElementById("study-list");
     const achievementsList = document.getElementById("achievements-list");
+    
 
-    let money = 0;
-    let researchPoints = 0;
+    let money = 1000;
+    let researchPoints = 1000;
+    let level = 1;
+    let xp = 0;
     let cakes = 0;
+    let xpRequiredPerLevel = 250;
+    let excessXP = 0;
     let moneyIntervalID;
     let researchPointsIntervalID;
 
@@ -69,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { name: "Bestselling Author", description: "Gain Enough Knowledge In Order To Become An Author", unlocked: false },
         // Add more achievements here...
     ];
+
 function updateColors() {
     // Update colors for money earning methods
     earnMoneyList.querySelectorAll("li").forEach((methodItem, index) => {
@@ -89,13 +96,75 @@ function updateColors() {
         }
     });
 }
- 
 
     setInterval(() => {
         updateColors();
         updateUI();
         checkAchievements();
-    }, 10);
+    }, 10);	
+ 
+function updateLevel() {
+    const remainingXP = xpRequiredPerLevel - excessXP; // Calculate remaining XP required for the next level
+    const currentXP = xpRequiredPerLevel - remainingXP; // Calculate current XP progress
+    levelElement.innerHTML = `Level: ${level} (EXP: ${currentXP}/${xpRequiredPerLevel})`; // Update level display
+}
+
+    // Function to increase the XP required for the next level by 20%
+function increaseXPRequired() {
+    xpRequiredPerLevel = Math.ceil(xpRequiredPerLevel * 1.2); // Increase by 20% and round up
+}
+
+    // Function to handle leveling up
+function levelUpIfNeeded() {
+    const remainingXP = xpRequiredPerLevel - excessXP; // Calculate remaining XP required for the next level
+    const currentXP = xpRequiredPerLevel - remainingXP; // Calculate current XP progress
+    level++; // Increase level
+    excessXP -= xpRequiredPerLevel; // Deduct excess XP contributed to the current level
+    increaseXPRequired(); // Increase XP required for next level
+    updateLevel(); // Update level display
+}
+
+    // Other functions and event listeners...
+
+    // Function to handle earning XP
+function earnXP(amount) {
+    xp += amount;
+    excessXP += amount; // Accumulate excess XP
+
+    // Check if there is excess XP to contribute to the next level
+    if (excessXP >= xpRequiredPerLevel) {
+        levelUpIfNeeded(); // Check if level up is needed
+    } else {
+        updateLevel(); // Update level display with current progress
+    }
+}
+
+
+function convertResearchPointsToXP(amount) {
+    if (researchPoints >= amount) {
+        researchPoints -= amount;
+        const xpEarned = amount; // The amount of XP earned is equal to the amount of research points converted
+        earnXP(xpEarned); // Call earnXP function with the amount of XP earned
+        updateLevel(); // Update level display
+        updateUI(); // Update UI elements
+    }
+}
+
+    convert1RPBtn.addEventListener("click", function() {
+        convertResearchPointsToXP(1);
+    });
+
+    convert10RPBtn.addEventListener("click", function() {
+        convertResearchPointsToXP(10);
+    });
+
+    convert100RPBtn.addEventListener("click", function() {
+        convertResearchPointsToXP(100);
+    });
+
+    convertAllRPBtn.addEventListener("click", function() {
+        convertResearchPointsToXP(researchPoints);
+    });
 
     earnMoneyBtn.addEventListener("click", function() {
         hideOtherMenus(earnMoneyList);
@@ -132,7 +201,7 @@ function renderMoneyMethods() {
 
     moneyMethods.forEach((method, index) => {
         const methodItem = document.createElement("li");
-        methodItem.textContent = `${method.name} - Earns $${method.moneyPerSecond}/s - Cost: $${method.cost} (Earns ${method.moneyPerSecond} per second)`;
+        methodItem.textContent = `${method.name} - Earns $${method.moneyPerSecond}/s - Cost: $${method.cost}`;
 
         if (method.purchased) {
             methodItem.textContent += " - BOUGHT";
@@ -186,7 +255,7 @@ function renderStudyMethods() {
 
     studyMethods.forEach((method, index) => {
         const methodItem = document.createElement("li");
-        methodItem.textContent = `${method.name} - Earns ${method.researchPointsPerSecond} RP/s - Cost: $${method.cost} (Earns ${method.researchPointsPerSecond} per second)`;
+        methodItem.textContent = `${method.name} - Earns ${method.researchPointsPerSecond} RP/s - Cost: $${method.cost}`;
 
         if (method.purchased) {
             methodItem.textContent += " - BOUGHT";
@@ -431,6 +500,7 @@ function renderAchievements() {
         } else {
             // If locked, display in unearned list
             const progress = getAchievementProgress(achievement); // Function to get achievement progress
+            achievementItem.style.color = "red";
             achievementItem.textContent = `${achievement.name}: ${achievement.description} - ${progress}`;
             unearnedAchievementsList.appendChild(achievementItem);
         }
@@ -522,12 +592,16 @@ function getAchievementProgress(achievement) {
 }
 
 
-    function updateUI() {
-        moneyElement.textContent = money;
-        researchPointsElement.textContent = researchPoints;
-        //cakesElement.textContent = Math.round(cakes);
-        renderAchievements();
-    }
+function updateUI() {
+    const xpRequired = level * xpRequiredPerLevel;
+    const remainingXP = xpRequiredPerLevel - excessXP;
+    const currentXP = xpRequiredPerLevel - remainingXP;; // Calculate current XP
+    moneyElement.textContent = money;
+    researchPointsElement.textContent = researchPoints;
+    levelElement.innerHTML = `Level: ${level} (EXP: ${currentXP}/${xpRequiredPerLevel})`; // Update level display
+    renderAchievements();
+}
+
 
     function hideOtherMenus(currentMenu) {
         const allMenus = [earnMoneyList, studyList, achievementsList,];
