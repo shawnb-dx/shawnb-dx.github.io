@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const achievementsList = document.getElementById("achievements-list");
     
 
-    let money = 1000;
-    let researchPoints = 1000;
+    let money = 0;
+    let researchPoints = 0;
     let level = 1;
     let xp = 0;
     let cakes = 0;
