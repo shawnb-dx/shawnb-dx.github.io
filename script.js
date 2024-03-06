@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Define achievements
     const achievements = [
+        // Money Achievements
         { name: "Starting Out Small", description: "Earn Your First $100.", unlocked: false },
         { name: "A Ruff Road Ahead", description: "Earn Enough To Unlock Dog Walking", unlocked: false },
         { name: "Starting A Livestream Empire", description: "Earn Enough To Start Streaming", unlocked: false },
@@ -63,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { name: "Coming At You Live!", description: "Earn Enough To Make It Big On Twitch", unlocked: false },
         { name: "Use My Affiliate Code", description: "Earn Enough To Get Your First Sponsorship", unlocked: false },
         { name: "Name Up In Lights", description: "Earn Enough To Star In A Movie", unlocked: false },
+        // Study Achievements
         { name: "Love A Good Book", description: "Gain 100 Research Points Reading Books", unlocked: false },
         { name: "Wikipedia Knows All", description: "Gain Enough Knowledge In Order To Browse Wikipedia", unlocked: false },
         { name: "Passing The Tests", description: "Gain Enough Knowledge In Order To Get Test Ready ", unlocked: false },
@@ -73,6 +75,19 @@ document.addEventListener("DOMContentLoaded", function() {
         { name: "Out In The Fields Of Glory", description: "Gain Enough Knowledge In Order To Conduct Field Research", unlocked: false },
         { name: "Shaping Young Minds", description: "Gain Enough Knowledge In Order To Teach A Class ", unlocked: false },
         { name: "Bestselling Author", description: "Gain Enough Knowledge In Order To Become An Author", unlocked: false },
+        // Level Up Achievements
+        { name: "Just Starting Out", description: "Reach Level 5", unlocked: false },
+        { name: "This Is Pretty Fun", description: "Reach Level 15", unlocked: false },
+        { name: "I Can't Stop Playing", description: "Reach Level 30 ", unlocked: false },
+        { name: "Just 5 More Minutes", description: "Reach Level 50 ", unlocked: false },
+        { name: "HA! Nice!", description: "Reach Level 69", unlocked: false },
+        { name: "Dopamine Spikes", description: "Reach Level 100", unlocked: false },
+        { name: "Number. Must. Go. Up.", description: "Reach Level 250", unlocked: false },
+        { name: "I'll Sleep Eventually", description: "Reach Level 500", unlocked: false },
+        { name: "You Won't Get This Achievement", description: "Reach Level 1000", unlocked: false },
+        { name: "Why Are You Still Here?!", description: "Reach Level 2500", unlocked: false },
+        { name: "The Game Doesn't Save Yet You Know...", description: "Reach Level 5000", unlocked: false },
+        { name: "Clearly You Have Too Much Time", description: "Reach Level 10000", unlocked: false },
         // Add more achievements here...
     ];
 
@@ -101,7 +116,7 @@ function updateColors() {
         updateColors();
         updateUI();
         checkAchievements();
-    }, 10);	
+    }, 10); 
  
 function updateLevel() {
     const remainingXP = xpRequiredPerLevel - excessXP; // Calculate remaining XP required for the next level
@@ -109,34 +124,30 @@ function updateLevel() {
     levelElement.innerHTML = `Level: ${level} (EXP: ${currentXP}/${xpRequiredPerLevel})`; // Update level display
 }
 
-    // Function to increase the XP required for the next level by 20%
+// Function to increase the XP required for the next level by 20%
 function increaseXPRequired() {
     xpRequiredPerLevel = Math.ceil(xpRequiredPerLevel * 1.2); // Increase by 20% and round up
 }
 
-    // Function to handle leveling up
+// Function to handle leveling up
 function levelUpIfNeeded() {
-    const remainingXP = xpRequiredPerLevel - excessXP; // Calculate remaining XP required for the next level
-    const currentXP = xpRequiredPerLevel - remainingXP; // Calculate current XP progress
-    level++; // Increase level
-    excessXP -= xpRequiredPerLevel; // Deduct excess XP contributed to the current level
-    increaseXPRequired(); // Increase XP required for next level
-    updateLevel(); // Update level display
+    while (excessXP >= xpRequiredPerLevel) {
+        const remainingXP = xpRequiredPerLevel - excessXP; // Calculate remaining XP required for the next level
+        const currentXP = xpRequiredPerLevel - remainingXP; // Calculate current XP progress
+        level++; // Increase level
+        excessXP -= xpRequiredPerLevel; // Deduct excess XP contributed to the current level
+        increaseXPRequired(); // Increase XP required for next level
+        updateLevel(); // Update level display
+    }
 }
 
-    // Other functions and event listeners...
-
-    // Function to handle earning XP
+// Function to handle earning XP
 function earnXP(amount) {
     xp += amount;
     excessXP += amount; // Accumulate excess XP
 
-    // Check if there is excess XP to contribute to the next level
-    if (excessXP >= xpRequiredPerLevel) {
-        levelUpIfNeeded(); // Check if level up is needed
-    } else {
-        updateLevel(); // Update level display with current progress
-    }
+    levelUpIfNeeded(); // Check if level up is needed
+    updateLevel(); // Update level display with current progress
 }
 
 
@@ -472,6 +483,78 @@ function checkAchievements() {
                             alert(`Achievement Unlocked: ${achievement.name}`);
                         }
                         break;
+                    case "Just Starting Out":
+                        if (level >= 5) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "This Is Pretty Fun":
+                        if (level >= 15) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "I Can't Stop Playing":
+                        if (level >= 30) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Just 5 More Minutes":
+                        if (level >= 50) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "HA! Nice!":
+                        if (level >= 69) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Dopamine Spikes":
+                        if (level >= 100) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Number. Must. Go. Up.":
+                        if (level >= 250) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "I'll Sleep Eventually":
+                        if (level >= 500) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "You Won't Get This Achievement":
+                        if (level >= 1000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Why Are You Still Here?!":
+                        if (level >= 2500) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "The Game Doesn't Save Yet You Know...":
+                        if (level >= 5000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
+                    case "Clearly You Have Too Much Time":
+                        if (level >= 10000) {
+                            achievement.unlocked = true;
+                            alert(`Achievement Unlocked: ${achievement.name}`);
+                        }
+                        break;
                     // Add more cases for other achievements...
                 }
             }
@@ -495,7 +578,7 @@ function renderAchievements() {
         if (achievement.unlocked) {
             // If unlocked, display in earned list
             achievementItem.style.color = "green";
-            achievementItem.textContent = `${achievement.name}: ${achievement.description} - Unlocked`;
+            achievementItem.textContent = `${achievement.name}: - UNLOCKED!`;
             earnedAchievementsList.appendChild(achievementItem);
         } else {
             // If locked, display in unearned list
@@ -586,6 +669,42 @@ function getAchievementProgress(achievement) {
             break;
         case "Bestselling Author":
             progress = `Progress: ${researchPoints} / 128000`;
+            break;
+        case "Just Starting Out":
+            progress = `Progress: ${level} / 5`;
+            break;
+        case "This Is Pretty Fun":
+            progress = `Progress: ${level} / 15`;
+            break;
+        case "I Can't Stop Playing":
+            progress = `Progress: ${level} / 30`;
+            break;
+        case "Just 5 More Minutes":
+            progress = `Progress: ${level} / 50`;
+            break;
+        case "HA! Nice!":
+            progress = `Progress: ${level} / 69`;
+            break;
+        case "Dopamine Spikes":
+            progress = `Progress: ${level} / 100`;
+            break;
+        case "Number. Must. Go. Up.":
+            progress = `Progress: ${level} / 250`;
+            break;
+        case "I'll Sleep Eventually":
+            progress = `Progress: ${level} / 500`;
+            break;
+        case "You Won't Get This Achievement":
+            progress = `Progress: ${level} / 1000`;
+            break;
+        case "Why Are You Still Here?!":
+            progress = `Progress: ${level} / 2500`;
+            break;
+        case "The Game Doesn't Save Yet You Know...":
+            progress = `Progress: ${level} / 5000`;
+            break;
+        case "Clearly You Have Too Much Time":
+            progress = `Progress: ${level} / 10000`;
             break;
     }
     return progress;
