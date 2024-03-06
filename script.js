@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const moneyElement = document.getElementById("money");
     const researchPointsElement = document.getElementById("research-points");
-   // const cakesElement = document.getElementById("cakes");
     const earnMoneyBtn = document.getElementById("earn-money-btn");
     const studyBtn = document.getElementById("study-btn");
     const bakeBtn = document.getElementById("bake-btn");
@@ -95,6 +94,7 @@ function updateColors() {
     setInterval(() => {
         updateColors();
         updateUI();
+        checkAchievements();
     }, 10);
 
     earnMoneyBtn.addEventListener("click", function() {
@@ -120,7 +120,6 @@ achievementsBtn.addEventListener("click", function() {
     if (!achievementsList.classList.contains("hidden")) {
         renderAchievements(); // Render achievements if the list is visible
     }
-    checkAchievements(); // Call checkAchievements() to update achievements status
 });
 
 function renderMoneyMethods() {
