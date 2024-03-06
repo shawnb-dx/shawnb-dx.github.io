@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
 
     let money = 0;
+    let skillPoints = 0;
     let researchPoints = 0;
     let level = 1;
     let xp = 0;
@@ -121,7 +122,7 @@ function updateColors() {
 function updateLevel() {
     const remainingXP = xpRequiredPerLevel - excessXP; // Calculate remaining XP required for the next level
     const currentXP = xpRequiredPerLevel - remainingXP; // Calculate current XP progress
-    levelElement.innerHTML = `Level: ${level} (EXP: ${currentXP}/${xpRequiredPerLevel})`; // Update level display
+    levelElement.innerHTML = `Level: ${level} (EXP: ${currentXP}/${xpRequiredPerLevel}) You Have ${skillPoints} Skill Point(s) To Spend`; // Update level display
 }
 
 // Function to increase the XP required for the next level by 20%
@@ -131,13 +132,19 @@ function increaseXPRequired() {
 
 // Function to handle leveling up
 function levelUpIfNeeded() {
-    while (excessXP >= xpRequiredPerLevel) {
+    while (excessXP >= xpRequiredPerLevel) { // Loop until excessXP is not enough to level up
         const remainingXP = xpRequiredPerLevel - excessXP; // Calculate remaining XP required for the next level
         const currentXP = xpRequiredPerLevel - remainingXP; // Calculate current XP progress
-        level++; // Increase level
-        excessXP -= xpRequiredPerLevel; // Deduct excess XP contributed to the current level
-        increaseXPRequired(); // Increase XP required for next level
-        updateLevel(); // Update level display
+
+        if (remainingXP <= 0) { // Check if it's time to level up
+            level++; // Increase level
+            excessXP -= xpRequiredPerLevel; // Deduct excess XP contributed to the current level
+            increaseXPRequired(); // Increase XP required for next level
+            earnSkillPoints(); // Reward the player with skill points
+            updateLevel(); // Update level display
+        } else {
+            break; // Exit the loop if excessXP is not enough to level up
+        }
     }
 }
 
@@ -149,8 +156,10 @@ function earnXP(amount) {
     levelUpIfNeeded(); // Check if level up is needed
     updateLevel(); // Update level display with current progress
 }
-
-
+function earnSkillPoints() {
+    skillPoints++; // Increase skill points by 1 every time this function is called
+    updateLevel(); // Update level display to show the updated skill points
+}
 function convertResearchPointsToXP(amount) {
     if (researchPoints >= amount) {
         researchPoints -= amount;
@@ -717,7 +726,7 @@ function updateUI() {
     const currentXP = xpRequiredPerLevel - remainingXP;; // Calculate current XP
     moneyElement.textContent = money;
     researchPointsElement.textContent = researchPoints;
-    levelElement.innerHTML = `Level: ${level} (EXP: ${currentXP}/${xpRequiredPerLevel})`; // Update level display
+    levelElement.innerHTML = `Level: ${level} (EXP: ${currentXP}/${xpRequiredPerLevel}) You Have ${skillPoints} Skill Point(s) To Spend`; // Update level display
     renderAchievements();
 }
 
