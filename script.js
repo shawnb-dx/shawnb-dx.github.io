@@ -3,17 +3,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const researchPointsElement = document.getElementById("research-points");
     const levelElement = document.getElementById("level");
     const earnMoneyBtn = document.getElementById("earn-money-btn");
-    const studyBtn = document.getElementById("study-btn");
-    const bakeBtn = document.getElementById("bake-btn");
-    const achievementsBtn = document.getElementById("achievements-btn");
     const earnMoneyList = document.getElementById("earn-money-list");
+    const studyBtn = document.getElementById("study-btn");
     const studyList = document.getElementById("study-list");
+    const achievementsBtn = document.getElementById("achievements-btn");
     const achievementsList = document.getElementById("achievements-list");
+    const perksBtn = document.getElementById("perks-btn");
+    const perksList = document.getElementById("perks-list");
     
-
-    let money = 0;
+    let money = 1000;
     let skillPoints = 0;
-    let researchPoints = 0;
+    let researchPoints = 10000;
     let level = 1;
     let xp = 0;
     let cakes = 0;
@@ -92,49 +92,26 @@ document.addEventListener("DOMContentLoaded", function() {
         // Add more achievements here...
     ];
 
-function updateColors() {
-    // Update colors for money earning methods
-    earnMoneyList.querySelectorAll("li").forEach((methodItem, index) => {
-        const methodName = methodItem.textContent.split(' - ')[0];
-        const method = moneyMethods.find(method => method.name === methodName);
-        
-        if (method) {
-            if (method.purchased) {
-                methodItem.style.color = "gray";
-                methodItem.disabled = true;
-            } else if (money >= method.cost) {
-                methodItem.style.color = "green";
-                methodItem.disabled = false;
-            } else {
-                methodItem.style.color = "red";
-                methodItem.disabled = true;
-            }
-        }
-    });
-}
+    const perks = [
+        { name: "Money Boost", description: "Increase money earnings by 10% (additive)", levels: [0.1, 0.21, 0.331, 0.4641, 0.61051, 0.771561, 0.9487171, 1.14358881, 1.357947691, 1.5937424601], cost: [1, 2, 3, 5, 8, 12, 15, 20, 25, 30,], requiredLevel: [1, 3, 5, 10, 15, 25, 35, 50, 75, 100] },
+    ];
 
-    setInterval(() => {
-        updateColors();
-        updateUI();
-        checkAchievements();
-    }, 10); 
- 
-function updateLevel() {
-    const remainingXP = xpRequiredPerLevel - excessXP; // Calculate remaining XP required for the next level
-    const currentXP = xpRequiredPerLevel - remainingXP; // Calculate current XP progress
-    levelElement.innerHTML = `Level: ${level} (EXP: ${currentXP}/${xpRequiredPerLevel}) You Have ${skillPoints} Skill Point(s) To Spend`; // Update level display
-}
-
-// Function to increase the XP required for the next level by 20%
-function increaseXPRequired() {
-    xpRequiredPerLevel = Math.ceil(xpRequiredPerLevel * 1.2); // Increase by 20% and round up
-}
-
-// Function to handle leveling up
-function levelUpIfNeeded() {
-    while (excessXP >= xpRequiredPerLevel) { // Loop until excessXP is not enough to level up
+    function updateLevel() {
         const remainingXP = xpRequiredPerLevel - excessXP; // Calculate remaining XP required for the next level
         const currentXP = xpRequiredPerLevel - remainingXP; // Calculate current XP progress
+        levelElement.innerHTML = `Level: ${level} (EXP: ${currentXP}/${xpRequiredPerLevel}) You Have ${skillPoints} Skill Point(s) To Spend`; // Update level display
+    }
+
+    // Function to increase the XP required for the next level by 20%
+    function increaseXPRequired() {
+        xpRequiredPerLevel = Math.ceil(xpRequiredPerLevel * 1.2); // Increase by 20% and round up
+    }
+
+// Function to handle leveling up
+    function levelUpIfNeeded() {
+        while (excessXP >= xpRequiredPerLevel) { // Loop until excessXP is not enough to level up
+            const remainingXP = xpRequiredPerLevel - excessXP; // Calculate remaining XP required for the next level
+            const currentXP = xpRequiredPerLevel - remainingXP; // Calculate current XP progress
 
         if (remainingXP <= 0) { // Check if it's time to level up
             level++; // Increase level
@@ -144,9 +121,9 @@ function levelUpIfNeeded() {
             updateLevel(); // Update level display
         } else {
             break; // Exit the loop if excessXP is not enough to level up
+            }
         }
     }
-}
 
 // Function to handle earning XP
 function earnXP(amount) {
@@ -170,179 +147,31 @@ function convertResearchPointsToXP(amount) {
     }
 }
 
-    convert1RPBtn.addEventListener("click", function() {
-        convertResearchPointsToXP(1);
-    });
 
-    convert10RPBtn.addEventListener("click", function() {
-        convertResearchPointsToXP(10);
-    });
-
-    convert100RPBtn.addEventListener("click", function() {
-        convertResearchPointsToXP(100);
-    });
-
-    convertAllRPBtn.addEventListener("click", function() {
-        convertResearchPointsToXP(researchPoints);
-    });
-
-    earnMoneyBtn.addEventListener("click", function() {
-        hideOtherMenus(earnMoneyList);
-        earnMoneyList.classList.toggle("hidden");
-        if (!earnMoneyList.classList.contains("hidden")) {
-            renderMoneyMethods();
-            updateColors();
-        }
-    });
-    studyBtn.addEventListener("click", function() {
-        hideOtherMenus(studyList);
-        studyList.classList.toggle("hidden");
-        if (!studyList.classList.contains("hidden")) {
-            renderStudyMethods();
-            updateColors();
-        }
-    });
-
-achievementsBtn.addEventListener("click", function() {
-    hideOtherMenus(achievementsList); // Hide other menus
-    achievementsList.classList.toggle("hidden"); // Toggle visibility of achievements list
-    if (!achievementsList.classList.contains("hidden")) {
-        renderAchievements(); // Render achievements if the list is visible
-    }
-});
-
-function renderMoneyMethods() {
-    earnMoneyList.innerHTML = "";
-    const purchasedMethodsList = document.createElement("ul"); // Create a separate list for purchased methods
-    purchasedMethodsList.classList.add("purchased-methods");
-
-    const availableMethodsList = document.createElement("ul"); // Create a separate list for available methods
-    availableMethodsList.classList.add("available-methods");
-
-    moneyMethods.forEach((method, index) => {
-        const methodItem = document.createElement("li");
-        methodItem.textContent = `${method.name} - Earns $${method.moneyPerSecond}/s - Cost: $${method.cost}`;
-
-        if (method.purchased) {
-            methodItem.textContent += " - BOUGHT";
-            methodItem.style.color = "gray";
-        }
-
-        if (methodItem.textContent.includes("- BOUGHT")) {
-            const purchasedMethodItem = document.createElement("li");
-            purchasedMethodItem.textContent = methodItem.textContent;
-            purchasedMethodItem.style.color = "gray"; // Set color to gray for purchased methods
-            purchasedMethodItem.style.paddingLeft = "0"; // Remove padding to align with the main list
-            purchasedMethodsList.appendChild(purchasedMethodItem);
-        } else if (money >= method.cost) {
-            methodItem.style.color = "green";
-            methodItem.addEventListener("click", () => {
-                startEarningMoney(index);
-            });
-            methodItem.style.cursor = "pointer"; // Change cursor to pointer for clickable items
-            availableMethodsList.appendChild(methodItem);
-        } else {
-            methodItem.style.color = "red"; // Set color to red if the user cannot afford it
-            methodItem.disabled = true;
-            availableMethodsList.appendChild(methodItem);
-        }
-    });
-
-    if (availableMethodsList.children.length > 0) {
-        const availableMethodsHeading = document.createElement("h3");
-        availableMethodsHeading.textContent = "Available Money-Making Methods";
-        earnMoneyList.appendChild(availableMethodsHeading);
-        earnMoneyList.appendChild(availableMethodsList); // Append the available methods list to the main list
-    }
-
-    if (purchasedMethodsList.children.length > 0) {
-        const purchasedMethodsHeading = document.createElement("h3");
-        purchasedMethodsHeading.textContent = "Purchased Money-Making Methods";
-        purchasedMethodsList.style.marginTop = "10px"; // Add spacing to the top of the purchased methods list
-        earnMoneyList.appendChild(purchasedMethodsHeading);
-        earnMoneyList.appendChild(purchasedMethodsList); // Append the purchased methods list to the main list
-    }
-
-    updateColors(); // Update colors immediately after rendering the study methods
-}
-function renderStudyMethods() {
-    studyList.innerHTML = "";
-    const purchasedMethodsList = document.createElement("ul"); // Create a separate list for purchased methods
-    purchasedMethodsList.classList.add("purchased-methods");
-
-    const availableMethodsList = document.createElement("ul"); // Create a separate list for available methods
-    availableMethodsList.classList.add("available-methods");
-
-    studyMethods.forEach((method, index) => {
-        const methodItem = document.createElement("li");
-        methodItem.textContent = `${method.name} - Earns ${method.researchPointsPerSecond} RP/s - Cost: $${method.cost}`;
-
-        if (method.purchased) {
-            methodItem.textContent += " - BOUGHT";
-            methodItem.style.color = "gray";
-        }
-
-        if (methodItem.textContent.includes("- BOUGHT")) {
-            const purchasedMethodItem = document.createElement("li");
-            purchasedMethodItem.textContent = methodItem.textContent;
-            purchasedMethodItem.style.color = "gray"; // Set color to gray for purchased methods
-            purchasedMethodItem.style.paddingLeft = "0"; // Remove padding to align with the main list
-            purchasedMethodsList.appendChild(purchasedMethodItem);
-        } else if (money >= method.cost) {
-            methodItem.style.color = "green";
-            methodItem.addEventListener("click", () => {
-                startStudying(index);
-            });
-            methodItem.style.cursor = "pointer"; // Change cursor to pointer for clickable items
-            availableMethodsList.appendChild(methodItem);
-        } else {
-            methodItem.style.color = "red"; // Set color to red if the user cannot afford it
-            methodItem.disabled = true;
-            availableMethodsList.appendChild(methodItem);
-        }
-    });
-
-    if (availableMethodsList.children.length > 0) {
-        const availableMethodsHeading = document.createElement("h3");
-        availableMethodsHeading.textContent = "Available Study Methods";
-        studyList.appendChild(availableMethodsHeading);
-        studyList.appendChild(availableMethodsList); // Append the available methods list to the main list
-    }
-
-    if (purchasedMethodsList.children.length > 0) {
-        const purchasedMethodsHeading = document.createElement("h3");
-        purchasedMethodsHeading.textContent = "Purchased Study Methods";
-        purchasedMethodsList.style.marginTop = "10px"; // Add spacing to the top of the purchased methods list
-        studyList.appendChild(purchasedMethodsHeading);
-        studyList.appendChild(purchasedMethodsList); // Append the purchased methods list to the main list
-    }
-
-    updateColors(); // Update colors immediately after rendering the study methods
-}
 function startEarningMoney(index) {
     const selectedMethod = moneyMethods[index];
     if (money >= selectedMethod.cost && !selectedMethod.purchased) {
         money -= selectedMethod.cost;
         selectedMethod.purchased = true;
         clearInterval(moneyIntervalID); // Clear existing interval
-moneyIntervalID = setInterval(() => {
-    let totalMoneyPerSecond = 0;
-    moneyMethods.forEach(method => {
-        if (method.purchased) {
-            totalMoneyPerSecond += method.moneyPerSecond;
-        }
-    });
-    money += totalMoneyPerSecond; // Add total money per second to the money variable
-    updateUI();
-    renderMoneyMethods();
-}, 1000);
+        moneyIntervalID = setInterval(() => {
+            let totalMoneyPerSecond = 0;
+            moneyMethods.forEach(method => {
+                if (method.purchased) {
+                    totalMoneyPerSecond += method.moneyPerSecond;
+                }
+            });
+            const moneyMultiplier = applyPerkEffects(); // Apply perk effects
+            money += totalMoneyPerSecond * moneyMultiplier; // Apply money multiplier
+            updateUI();
+            renderMoneyMethods();
+        }, 1000);
     } else if (selectedMethod.purchased) {
         alert("This method has already been purchased.");
     } else {
         alert("Not enough money to start this method.");
     }
 }
-
 
 function startStudying(index) {
     const selectedMethod = studyMethods[index];
@@ -367,6 +196,58 @@ function startStudying(index) {
         alert("Not enough money to start this method.");
     }
 }
+
+// Function to apply perk effects
+
+
+
+// Function to purchase a perk
+function purchasePerk(index) {
+    const selectedPerk = perks[index];
+    let perkLevel = selectedPerk.level || 0; // Get the current level of the perk (default to 0 if not specified)
+    
+    // Check if the player has reached the maximum level for the perk
+    if (perkLevel >= selectedPerk.levels.length) {
+        alert("You've reached the maximum level for this perk.");
+        return;
+    }
+
+    // Check if the player has reached the required level for the current perk level
+    if (selectedPerk.requiredLevel[perkLevel] > level) {
+        alert(`You haven't reached the required level ${selectedPerk.requiredLevel[perkLevel]} for this perk.`);
+        return;
+    }
+    
+    // Check if the player has enough skill points to purchase the current perk level
+    if (selectedPerk.cost[perkLevel] > skillPoints) {
+        alert("You don't have enough skill points to purchase this perk.");
+        return;
+    }
+    
+    skillPoints -= selectedPerk.cost[perkLevel]; // Deduct skill points
+    selectedPerk.level = perkLevel + 1; // Increment the perk level by 1
+    selectedPerk.purchased = true; // Set the purchased flag to true
+    updateUI(); // Update UI to reflect the changes
+    applyPerkEffects(); // Apply the effects of purchased perk
+}
+
+function applyPerkEffects() {
+    console.log("applyPerkEffects() called");
+    let moneyMultiplier = 1; // Default money multiplier
+    perks.forEach(perk => {
+        if (perk.purchased) {
+            console.log("Perk:", perk.name);
+            console.log("Perk level:", perk.level);
+            for (let i = 0; i < perk.level; i++) {
+                console.log("Perk level:", i + 1, "Value:", perk.levels[i]);
+                moneyMultiplier += perk.levels[i] || 0;
+            }
+        }
+    });
+    console.log("Current money multiplier:", moneyMultiplier);
+    return moneyMultiplier;
+}
+
 function checkAchievements() {
         // Check conditions for each achievement and update unlocked status if conditions are met
         achievements.forEach(achievement => {
@@ -570,51 +451,6 @@ function checkAchievements() {
         });
     }
 
-function renderAchievements() {
-    // Clear existing achievements lists
-    achievementsList.innerHTML = "";
-    const earnedAchievementsList = document.createElement("ul"); // Create a separate list for earned achievements
-    earnedAchievementsList.classList.add("earned-achievements");
-
-    const unearnedAchievementsList = document.createElement("ul"); // Create a separate list for unearned achievements
-    unearnedAchievementsList.classList.add("unearned-achievements");
-
-    // Loop through achievements array
-    achievements.forEach(achievement => {
-        const achievementItem = document.createElement("li");
-
-        // Check if the achievement is unlocked
-        if (achievement.unlocked) {
-            // If unlocked, display in earned list
-            achievementItem.style.color = "green";
-            achievementItem.textContent = `${achievement.name}: - UNLOCKED!`;
-            earnedAchievementsList.appendChild(achievementItem);
-        } else {
-            // If locked, display in unearned list
-            const progress = getAchievementProgress(achievement); // Function to get achievement progress
-            achievementItem.style.color = "red";
-            achievementItem.textContent = `${achievement.name}: ${achievement.description} - ${progress}`;
-            unearnedAchievementsList.appendChild(achievementItem);
-        }
-    });
-
-    // Add heading for earned achievements list
-    const earnedAchievementsHeading = document.createElement("h3");
-    earnedAchievementsHeading.textContent = "Earned Achievements";
-    achievementsList.appendChild(earnedAchievementsHeading);
-    
-    // Append earned achievements list to main achievements list
-    achievementsList.appendChild(earnedAchievementsList);
-
-    // Add heading for unearned achievements list
-    const unearnedAchievementsHeading = document.createElement("h3");
-    unearnedAchievementsHeading.textContent = "Unearned Achievements";
-    achievementsList.appendChild(unearnedAchievementsHeading);
-
-    // Append unearned achievements list to main achievements list
-    achievementsList.appendChild(unearnedAchievementsList);
-}
-
 // Function to get achievement progress
 function getAchievementProgress(achievement) {
     let progress = "";
@@ -718,21 +554,293 @@ function getAchievementProgress(achievement) {
     }
     return progress;
 }
+function renderMoneyMethods() {
+    earnMoneyList.innerHTML = "";
+    const purchasedMethodsList = document.createElement("ul"); // Create a separate list for purchased methods
+    purchasedMethodsList.classList.add("purchased-methods");
 
+    const availableMethodsList = document.createElement("ul"); // Create a separate list for available methods
+    availableMethodsList.classList.add("available-methods");
+
+    moneyMethods.forEach((method, index) => {
+        const methodItem = document.createElement("li");
+        methodItem.textContent = `${method.name} - Earns $${method.moneyPerSecond}/s - Cost: $${method.cost}`;
+
+        if (method.purchased) {
+            methodItem.textContent += " - BOUGHT";
+            methodItem.style.color = "gray";
+        }
+
+        if (methodItem.textContent.includes("- BOUGHT")) {
+            const purchasedMethodItem = document.createElement("li");
+            purchasedMethodItem.textContent = methodItem.textContent;
+            purchasedMethodItem.style.color = "gray"; // Set color to gray for purchased methods
+            purchasedMethodItem.style.paddingLeft = "0"; // Remove padding to align with the main list
+            purchasedMethodsList.appendChild(purchasedMethodItem);
+        } else if (money >= method.cost) {
+            methodItem.style.color = "green";
+            methodItem.addEventListener("click", () => {
+                startEarningMoney(index);
+            });
+            methodItem.style.cursor = "pointer"; // Change cursor to pointer for clickable items
+            availableMethodsList.appendChild(methodItem);
+        } else {
+            methodItem.style.color = "red"; // Set color to red if the user cannot afford it
+            methodItem.disabled = true;
+            availableMethodsList.appendChild(methodItem);
+        }
+    });
+
+    if (availableMethodsList.children.length > 0) {
+        const availableMethodsHeading = document.createElement("h3");
+        availableMethodsHeading.textContent = "Available Money-Making Methods";
+        earnMoneyList.appendChild(availableMethodsHeading);
+        earnMoneyList.appendChild(availableMethodsList); // Append the available methods list to the main list
+    }
+
+    if (purchasedMethodsList.children.length > 0) {
+        const purchasedMethodsHeading = document.createElement("h3");
+        purchasedMethodsHeading.textContent = "Purchased Money-Making Methods";
+        purchasedMethodsList.style.marginTop = "10px"; // Add spacing to the top of the purchased methods list
+        earnMoneyList.appendChild(purchasedMethodsHeading);
+        earnMoneyList.appendChild(purchasedMethodsList); // Append the purchased methods list to the main list
+    }
+
+    updateColors(); // Update colors immediately after rendering the study methods
+}
+
+function renderPerks() {
+    perksList.innerHTML = "";
+    perks.forEach((perk, index) => {
+        const perkContainer = document.createElement("div");
+        perkContainer.classList.add("perk-container");
+
+        const perkItem = document.createElement("div");
+        const perkLevel = perk.level || 0; // Get the current level of the perk (default to 0 if not specified)
+        const displayLevel = perkLevel;
+        perkItem.textContent = `${perk.name} - Level ${displayLevel} - ${perk.description}`;
+
+        let nextLevel = displayLevel + 1; // Always display the next level requirements
+
+        const nextLevelRequirements = document.createElement("div");
+        nextLevelRequirements.classList.add("perk-requirements");
+        nextLevelRequirements.textContent = `Required Level: ${perk.requiredLevel[displayLevel]}`;
+
+        const perkButton = document.createElement("button");
+        perkButton.textContent = `Upgrade (${perk.cost[displayLevel]} Skill Points)`;
+        perkButton.classList.add("perk-available");
+
+        // Check if the player can afford to purchase the perk
+        if (perk.requiredLevel[displayLevel] <= level && perk.cost[displayLevel] <= skillPoints) {
+            perkButton.classList.add("perk-available");
+            perkButton.addEventListener("click", () => {
+                purchasePerk(index);
+            });
+        } else {
+            perkButton.classList.add("perk-unavailable");
+            // Disable the button if the player can't afford the perk
+            perkButton.disabled = true;
+        }
+
+        perkContainer.appendChild(perkItem);
+        perkContainer.appendChild(nextLevelRequirements); // Add the required level information
+        perkContainer.appendChild(perkButton);
+
+        perksList.appendChild(perkContainer);
+    });
+}
+
+
+// Call renderPerks() periodically to update the UI
+setInterval(renderPerks, 1000); 
+
+
+function renderStudyMethods() {
+    studyList.innerHTML = "";
+    const purchasedMethodsList = document.createElement("ul"); // Create a separate list for purchased methods
+    purchasedMethodsList.classList.add("purchased-methods");
+
+    const availableMethodsList = document.createElement("ul"); // Create a separate list for available methods
+    availableMethodsList.classList.add("available-methods");
+
+    studyMethods.forEach((method, index) => {
+        const methodItem = document.createElement("li");
+        methodItem.textContent = `${method.name} - Earns ${method.researchPointsPerSecond} RP/s - Cost: $${method.cost}`;
+
+        if (method.purchased) {
+            methodItem.textContent += " - BOUGHT";
+            methodItem.style.color = "gray";
+        }
+
+        if (methodItem.textContent.includes("- BOUGHT")) {
+            const purchasedMethodItem = document.createElement("li");
+            purchasedMethodItem.textContent = methodItem.textContent;
+            purchasedMethodItem.style.color = "gray"; // Set color to gray for purchased methods
+            purchasedMethodItem.style.paddingLeft = "0"; // Remove padding to align with the main list
+            purchasedMethodsList.appendChild(purchasedMethodItem);
+        } else if (money >= method.cost) {
+            methodItem.style.color = "green";
+            methodItem.addEventListener("click", () => {
+                startStudying(index);
+            });
+            methodItem.style.cursor = "pointer"; // Change cursor to pointer for clickable items
+            availableMethodsList.appendChild(methodItem);
+        } else {
+            methodItem.style.color = "red"; // Set color to red if the user cannot afford it
+            methodItem.disabled = true;
+            availableMethodsList.appendChild(methodItem);
+        }
+    });
+
+    if (availableMethodsList.children.length > 0) {
+        const availableMethodsHeading = document.createElement("h3");
+        availableMethodsHeading.textContent = "Available Study Methods";
+        studyList.appendChild(availableMethodsHeading);
+        studyList.appendChild(availableMethodsList); // Append the available methods list to the main list
+    }
+
+    if (purchasedMethodsList.children.length > 0) {
+        const purchasedMethodsHeading = document.createElement("h3");
+        purchasedMethodsHeading.textContent = "Purchased Study Methods";
+        purchasedMethodsList.style.marginTop = "10px"; // Add spacing to the top of the purchased methods list
+        studyList.appendChild(purchasedMethodsHeading);
+        studyList.appendChild(purchasedMethodsList); // Append the purchased methods list to the main list
+    }
+
+    updateColors(); // Update colors immediately after rendering the study methods
+}
+
+function renderAchievements() {
+    // Clear existing achievements lists
+    achievementsList.innerHTML = "";
+    const earnedAchievementsList = document.createElement("ul"); // Create a separate list for earned achievements
+    earnedAchievementsList.classList.add("earned-achievements");
+
+    const unearnedAchievementsList = document.createElement("ul"); // Create a separate list for unearned achievements
+    unearnedAchievementsList.classList.add("unearned-achievements");
+
+    // Loop through achievements array
+    achievements.forEach(achievement => {
+        const achievementItem = document.createElement("li");
+
+        // Check if the achievement is unlocked
+        if (achievement.unlocked) {
+            // If unlocked, display in earned list
+            achievementItem.style.color = "green";
+            achievementItem.textContent = `${achievement.name}: - UNLOCKED!`;
+            earnedAchievementsList.appendChild(achievementItem);
+        } else {
+            // If locked, display in unearned list
+            const progress = getAchievementProgress(achievement); // Function to get achievement progress
+            achievementItem.style.color = "red";
+            achievementItem.textContent = `${achievement.name}: ${achievement.description} - ${progress}`;
+            unearnedAchievementsList.appendChild(achievementItem);
+        }
+    });
+
+    // Add heading for earned achievements list
+    const earnedAchievementsHeading = document.createElement("h3");
+    earnedAchievementsHeading.textContent = "Earned Achievements";
+    achievementsList.appendChild(earnedAchievementsHeading);
+    
+    // Append earned achievements list to main achievements list
+    achievementsList.appendChild(earnedAchievementsList);
+
+    // Add heading for unearned achievements list
+    const unearnedAchievementsHeading = document.createElement("h3");
+    unearnedAchievementsHeading.textContent = "Unearned Achievements";
+    achievementsList.appendChild(unearnedAchievementsHeading);
+
+    // Append unearned achievements list to main achievements list
+    achievementsList.appendChild(unearnedAchievementsList);
+}
+    convert1RPBtn.addEventListener("click", function() {
+        convertResearchPointsToXP(1);
+    });
+
+    convert10RPBtn.addEventListener("click", function() {
+        convertResearchPointsToXP(10);
+    });
+
+    convert100RPBtn.addEventListener("click", function() {
+        convertResearchPointsToXP(100);
+    });
+
+    convertAllRPBtn.addEventListener("click", function() {
+        convertResearchPointsToXP(researchPoints);
+    });
+
+    earnMoneyBtn.addEventListener("click", function() {
+        hideOtherMenus(earnMoneyList);
+        earnMoneyList.classList.toggle("hidden");
+        if (!earnMoneyList.classList.contains("hidden")) {
+            renderMoneyMethods();
+            updateColors();
+        }
+    });
+    studyBtn.addEventListener("click", function() {
+        hideOtherMenus(studyList);
+        studyList.classList.toggle("hidden");
+        if (!studyList.classList.contains("hidden")) {
+            renderStudyMethods();
+            updateColors();
+        }
+    });
+
+    achievementsBtn.addEventListener("click", function() {
+        hideOtherMenus(achievementsList); // Hide other menus
+        achievementsList.classList.toggle("hidden"); // Toggle visibility of achievements list
+        if (!achievementsList.classList.contains("hidden")) {
+            renderAchievements();
+            updateColors(); // Render achievements if the list is visible
+        }
+    });
+
+    perksBtn.addEventListener("click", function() {
+        hideOtherMenus(perksList); // Hide other menus
+        perksList.classList.toggle("hidden"); // Toggle visibility of perks list
+        if (!perksList.classList.contains("hidden")) {
+            renderPerks();
+            updateColors(); // Render achievements if the list is visible
+        }
+    });
 
 function updateUI() {
     const xpRequired = level * xpRequiredPerLevel;
     const remainingXP = xpRequiredPerLevel - excessXP;
-    const currentXP = xpRequiredPerLevel - remainingXP;; // Calculate current XP
-    moneyElement.textContent = money;
+    const currentXP = xpRequiredPerLevel - remainingXP; // Calculate current XP
+
+    // Round money to 2 decimal places
+    const formattedMoney = money.toFixed(2);
+
+    moneyElement.textContent = formattedMoney;
     researchPointsElement.textContent = researchPoints;
     levelElement.innerHTML = `Level: ${level} (EXP: ${currentXP}/${xpRequiredPerLevel}) You Have ${skillPoints} Skill Point(s) To Spend`; // Update level display
     renderAchievements();
 }
 
+    function updateColors() {
+        earnMoneyList.querySelectorAll("li").forEach((methodItem, index) => {
+        const methodName = methodItem.textContent.split(' - ')[0];
+        const method = moneyMethods.find(method => method.name === methodName);
+        
+        if (method) {
+            if (method.purchased) {
+                methodItem.style.color = "gray";
+                methodItem.disabled = true;
+            } else if (money >= method.cost) {
+                methodItem.style.color = "green";
+                methodItem.disabled = false;
+            } else {
+                methodItem.style.color = "red";
+                methodItem.disabled = true;
+            }
+        }
+        });
+    }
 
     function hideOtherMenus(currentMenu) {
-        const allMenus = [earnMoneyList, studyList, achievementsList,];
+        const allMenus = [earnMoneyList, studyList, achievementsList, perksList];
         allMenus.forEach(menu => {
             if (menu !== currentMenu && !menu.classList.contains("hidden")) {
                 menu.classList.add("hidden");
@@ -740,4 +848,9 @@ function updateUI() {
         });
     }
 
+    setInterval(() => {
+        updateColors();
+        updateUI();
+        checkAchievements();
+    }, 10); 
 });

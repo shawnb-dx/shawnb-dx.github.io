@@ -74,3 +74,27 @@ body {
 .grayed-out {
     color: gray; /* Color for grayed out items */
 }
+.perk-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.perk-available {
+    cursor: pointer;
+    color: green;
+}
+
+.perk-unavailable {
+    color: red;
+}
+
+.perk-purchased {
+    color: gray;
+}
+
+.perk-requirements {
+    margin-top: 5px;
+    font-style: italic;
+}
