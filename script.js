@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const perksBtn = document.getElementById("perks-btn");
     const perksList = document.getElementById("perks-list");
     
-    let money = 1000;
+    let money = 0;
     let skillPoints = 0;
-    let researchPoints = 10000;
+    let researchPoints = 0;
     let level = 1;
     let xp = 0;
     let cakes = 0;
