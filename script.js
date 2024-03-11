@@ -381,11 +381,6 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("Not enough money to start this method.");
         }
     }
-
-    // Function to apply perk effects
-
-
-
     // Function to purchase a perk
     function purchasePerk(index) {
         const selectedPerk = perks[index];
@@ -865,7 +860,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (achievement.unlocked) {
                 achievementItem.style.color = "green";
-                achievementItem.textContent = `${achievement.name}: - UNLOCKED!`;
+                achievementItem.textContent = `${achievement.name}: UNLOCKED!`;
             } else {
                 const progress = getAchievementProgress(achievement);
                 achievementItem.style.color = "red";
