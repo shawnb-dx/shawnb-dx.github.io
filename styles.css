@@ -11,8 +11,8 @@ body {
 }
 
 .actions {
-    display: flex; /* Use flexbox */
-    justify-content: space-around; /* Distribute items evenly along the main axis */
+    display: flex; 
+    justify-content: space-around; 
     margin-top: 20px;
 }    
 
@@ -21,9 +21,9 @@ body {
 }
 
 .resource-info ul {
-    list-style: none; /* Remove bullet points */
-    padding: 0; /* Optional: remove default padding */
-    margin: 0; /* Optional: remove default margin */
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
 }
 
 .actions button {
@@ -56,9 +56,8 @@ body {
     cursor: pointer;
     padding: 5px 0;
     border-bottom: 1px solid #ccc;
-    color: green; /* Default color for items */
+    color: black; 
 }
-
 #achievements-list li:last-child,
 #earn-money-list li:last-child,
 #study-list li:last-child {
@@ -72,7 +71,7 @@ body {
 }
 
 .grayed-out {
-    color: gray; /* Color for grayed out items */
+    color: gray; 
 }
 .perk-container {
     border: 1px solid #ccc;
@@ -97,4 +96,97 @@ body {
 .perk-requirements {
     margin-top: 5px;
     font-style: italic;
+}
+.money-method-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 0 auto 10px;
+    background-color: #f9f9f9;
+    max-width: 600px;
+    text-align: center;
+    color:black;
+}
+
+.money-method-item {
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+    color: green; 
+}
+
+.money-method-item:last-child {
+    border-bottom: none;
+}
+
+.money-method-item:hover {
+    background-color: #eee;
+}
+
+.money-method-unavailable {
+    color: red;
+}
+
+.money-method-available {
+    cursor: pointer;
+    color: green;
+}
+
+.money-method-button {
+    margin: 5px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+}
+
+.money-method-button:hover {
+    background-color: #eee;
+}
+.study-method-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.study-method-item {
+    margin-bottom: 5px;
+}
+
+.study-method-button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.study-method-button:hover {
+    background-color: #eee;
+}
+
+.study-method-available {
+    color: green;
+}
+
+.study-method-unavailable {
+    color: red;
+}
+
+.study-method-button:disabled {
+    color: gray;
+    cursor: not-allowed;
+}
+.achievement-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    text-align: center; 
+}
+
+.achievement-item {
+    margin-bottom: 5px;
+}
+.black-text {
+    color: black; /* Set text color to black */
 }
